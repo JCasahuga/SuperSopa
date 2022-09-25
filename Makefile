@@ -10,5 +10,5 @@ diccSortedVector: diccSortedVector.cc
 	g++ diccSortedVector.cc -O2 -o diccSortedVector.x
 diccTrie: diccTrie.cc
 	g++ diccTrie.cc -O2 -o diccTrie.x
-supersopar: supersopar.cc
-	g++ supersopar.cc -O2 -o supersopar.x
+supersopa: supersopa.cc
+	g++ supersopa.cc -O2 -o supersopa.x
