@@ -39,13 +39,13 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /Users/mac/Desktop/A/Projecte-SuperSopa/cmake-build-debug/
+cmake_ninja_workdir = /Users/mac/Desktop/SuperSopa/cmake-build-debug/
 
 #############################################
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/mac/Desktop/A/Projecte-SuperSopa/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/mac/Desktop/A/Projecte-SuperSopa -B/Users/mac/Desktop/A/Projecte-SuperSopa/cmake-build-debug
+  COMMAND = cd /Users/mac/Desktop/SuperSopa/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/mac/Desktop/SuperSopa -B/Users/mac/Desktop/SuperSopa/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -57,7 +57,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/mac/Desktop/A/Projecte-SuperSopa/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /Users/mac/Desktop/SuperSopa/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -72,10 +72,10 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_Projecte_SuperSopa: phony || CMakeFiles/Projecte_SuperSopa.dir
 
-build CMakeFiles/Projecte_SuperSopa.dir/main.cpp.o: CXX_COMPILER__Projecte_SuperSopa_Debug /Users/mac/Desktop/A/Projecte-SuperSopa/main.cpp || cmake_object_order_depends_target_Projecte_SuperSopa
-  DEP_FILE = CMakeFiles/Projecte_SuperSopa.dir/main.cpp.o.d
+build CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o: CXX_COMPILER__Projecte_SuperSopa_Debug /Users/mac/Desktop/SuperSopa/supersopa.cc || cmake_object_order_depends_target_Projecte_SuperSopa
+  DEP_FILE = CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++17
-  INCLUDES = -I/Users/mac/Desktop/A/Projecte-SuperSopa/.
+  INCLUDES = -I/Users/mac/Desktop/SuperSopa/.
   OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
   OBJECT_FILE_DIR = CMakeFiles/Projecte_SuperSopa.dir
 
@@ -87,7 +87,7 @@ build CMakeFiles/Projecte_SuperSopa.dir/main.cpp.o: CXX_COMPILER__Projecte_Super
 #############################################
 # Link the executable Projecte_SuperSopa
 
-build Projecte_SuperSopa: CXX_EXECUTABLE_LINKER__Projecte_SuperSopa_Debug CMakeFiles/Projecte_SuperSopa.dir/main.cpp.o
+build Projecte_SuperSopa: CXX_EXECUTABLE_LINKER__Projecte_SuperSopa_Debug CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
   POST_BUILD = :
@@ -104,7 +104,7 @@ build Projecte_SuperSopa: CXX_EXECUTABLE_LINKER__Projecte_SuperSopa_Debug CMakeF
 # =============================================================================
 
 #############################################
-# Folder: /Users/mac/Desktop/A/Projecte-SuperSopa/cmake-build-debug
+# Folder: /Users/mac/Desktop/SuperSopa/cmake-build-debug
 
 build all: phony Projecte_SuperSopa
 
