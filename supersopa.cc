@@ -84,7 +84,6 @@ void canviarMidaTaulell(vector<string>& P) {
 //Calculem el subconjunt P de paraules de D que plantarem a la Sopa i canviem la mida de la Sopa si és necessari
 void calcularSubconjuntP(string& fitxer, vector<string>& P) {
     llegirParaules(fitxer, P);
-    canviarMidaTaulell(P);
     cout << "---------------\n" << "Subconjunt P: " << endl;
     for (auto i : P) cout << i << endl;
 }
@@ -250,9 +249,9 @@ int main() {
 
     vector<string> P;
     calcularSubconjuntP(fitxer,P);
+    canviarMidaTaulell(P);
 
     cout << "---------------\n" << "SUPER SOPA!" << endl;
-
     vector<vector<char>> taulell(N,vector<char>(N));
     generarTaulellBuit(taulell);
 
