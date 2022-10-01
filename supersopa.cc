@@ -10,7 +10,7 @@
 
 using namespace std;
 
-/* Aquest enum donté totes les possibles direccions a les quals podem tenir una lletra d'una paraula */
+/* Aquest enum conté totes  les possibles direccions a les quals podem tenir una lletra d'una paraula */
 enum direccions {
     ESQUERRA,
     DRETA,
@@ -103,7 +103,7 @@ char generarCaracterRandom() {
 void generarTaulellBuit(vector<vector<char>>& taulell) {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            // 'x' ens representa el caràcter nul
+            // '-' ens representa el caràcter nul
             taulell[i][j] = '-';
         }
     }
@@ -357,11 +357,11 @@ int main() {
     //potser seria millor tenir un set per evitar duplicats
     vector<string> paraulesTrobades = cercaParaules(D,taulell);
 
-    //el convertim en un unordered set per evitar duplicats ja que ens
-    // podria trobar una paraula més d'una vegada
+    //el convertim en un unordered set per evitar els duplicats
     unordered_set<string> s;
     for (auto i : paraulesTrobades) s.insert(i);
 
+    //ens troba més paraules que les que plantem i que es troben a D
     paraulesTrobades.assign(s.begin(),s.end());
     sort(paraulesTrobades.begin(),paraulesTrobades.end());
 
