@@ -13,4 +13,3 @@ cargol
 escorpi
 peix
 aaaaaaa
-abcdefghijh
