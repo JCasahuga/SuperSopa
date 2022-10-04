@@ -41,7 +41,6 @@ int main(int argc, char* argv[]) {
         diccDHashing dicc(64768);
         // Read the innput
         dicc.readInput();
-        cerr << "readed!" << endl;
         // Explore Soup
         dicc.exploreSoup();
     }

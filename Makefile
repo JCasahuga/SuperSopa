@@ -23,6 +23,8 @@ diccBloomFilter.o: diccBloomFilter.cc diccBloomFilter.h
 # diccTrie.o: diccTrie.cc diccTrie.hh
 # 	g++ $(OPCIONS) -c diccTrie.o
 
+diccBloomFilter: diccBloomFilter.cc
+	g++ diccBloomFilter.cc -O2 -o diccBloomFilter.x
 
 diccTrie: diccTrie.cc
 	g++ diccTrie.cc -O2 -o diccTrie.x
