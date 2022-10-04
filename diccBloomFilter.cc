@@ -7,8 +7,8 @@ using namespace std;
 
 diccBloomFilter::diccBloomFilter(){}
 
-diccBloomFilter::diccBloomFilter(const int& probability){
-    p = probability; 
+diccBloomFilter::diccBloomFilter(const double& p){
+    probability = p; 
 }
 
 int modulo(int base, int e, int mod) {
@@ -59,30 +59,35 @@ unsigned int diccBloomFilter::stringToInt(string s) {
 
 // Assigns Words to the Map, if they don't fit, multiply the size by 2
 void diccBloomFilter::buildFilter() {
-    c = totalWords;    
-    filterSize = -(c*log(p))/(pow(log(2), 2));
-    k = -log2(p);
+    c = totalWords;
+    filterSize = -(c*log(probability))/(pow(log(2), 2));
+    k = -log2(probability);
     cout << "Filter size: " << filterSize << endl
          << "nº of hash functions: " << k << endl
-         << "nº of words " << c << endl;
+         << "nº of words " << c << endl << endl;
 
     bloomFilter = vector<bool>(filterSize, false);
-    cerr << "here" << endl;
     
     hashFunctions.clear();
     for (int i = 0; i < k; ++i) {
         hashFunctions.push_back(randomNumber());
     }
+    // for (auto x : hashFunctions) cout << x << " ";
+    // cout << endl;
+
     for (string word : words) {
         for (int hash : hashFunctions) {
             bloomFilter[(stringToInt(word)*hash)%filterSize] = true;
         }
+        if(word.size() > maxWordSize) maxWordSize = word.size();
     }
+
+    // for (auto x : bloomFilter) cout << x;
+    // cout << endl;
 }
 
 void diccBloomFilter::readInput() {
     readWords();
-    cerr << "readedd words" << endl;
     readSoup();
 }
 
@@ -122,8 +127,11 @@ void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vect
     used[x][y] = -1;
     s.push_back(soup[x][y]);
 
-    // Is in the Hash Table?
     const int v = stringToInt(s);
+
+    //cout << maxWordSize << endl;
+    //cout << "Checking for " << s << " with value " << v << endl;
+    // Is in the Hash Table?
     if (search(v)) cout << "Found " << s << " Value " << v << endl;
 
     // Over Maximum Size Word

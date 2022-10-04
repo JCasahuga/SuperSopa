@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
         cerr << "Encara no esta implentat la trie" << endl;
     }
     else if (selection == 3) {
-        diccBloomFilter dicc(0.05); // Probabilitat de fals positiu desitjada
+        diccBloomFilter dicc(0.0000000001); // Probabilitat de fals positiu desitjada
         // Read the innput
         dicc.readInput();
         // Explore Soup

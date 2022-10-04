@@ -11,7 +11,7 @@ class diccBloomFilter
         //Constructores
         diccBloomFilter();
 
-        diccBloomFilter(const int& probability);
+        diccBloomFilter(const double& p);
 
         // Sends a BFS dor each letter on the soup
         void exploreSoup();
@@ -43,7 +43,7 @@ private:
         int filterSize;         //nº of elements in the filter
         int k;                  //nº of hash funcctions to apply to any element
         int c;                  //nº of elements stored in the bloom filter
-        int p = 0.05;           //probablity of false positive
+        double probability = 0.05;           //probablity of false positive
 
         vector<bool> bloomFilter;
         vector<int> hashFunctions;
