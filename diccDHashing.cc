@@ -1,3 +1,5 @@
+#include "diccDHashing.h"
+#include <iostream>
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -6,27 +8,16 @@ using namespace std;
 // En Aquest Algoritme Treballarem Els Caracters Com Enters
 // Per Tal de Indexar-los En La Taula
 
-// Hash Table & Parameters
-vector<int> hashTable;
-int keysPresent = 0;
-int tableSize = INT64_C(1) << 1;
-int prime;
+//Constructors
 
-// Soup
-int soupSize;
-vector<vector<char>> soup;
+diccDHashing::diccDHashing(){}
 
-// Possible Directions to Move in the Soup
-const vector<int> offSetsX = {1, -1, 0, 0, 1, 1, -1, -1};
-const vector<int> offSetsY = {0, 0, 1, -1, 1, -1, -1, 1};
-
-// Words
-int maxWordSize = 0;
-int totalWords;
-vector<string> words;
+diccDHashing::diccDHashing(const int& p){
+    prime = p; 
+}
 
 // Check if value is Prime
-bool isPrime(const int n)
+bool diccDHashing::isPrime(const int n)
 {
     if (n == 1 || n == 0)
         return false;
@@ -40,7 +31,7 @@ bool isPrime(const int n)
 }
 
 // Initialize Hash Table
-void doubleHash(int size) {
+void diccDHashing::doubleHash(int size) {
     tableSize = size;
     
     prime = size - 1;
@@ -49,17 +40,17 @@ void doubleHash(int size) {
 }
 
 // Returns value of h1(s)
-unsigned int hash1(int s) {
+unsigned int diccDHashing::hash1(int s) {
     return s%tableSize;
 }
 
 // Returns value of h2(s)
-unsigned int hash2(int s) {
+unsigned int diccDHashing::hash2(int s) {
     return prime - (s%prime);
 }
 
 // Inserts Value Into Table If Possible
-bool insert(int value) {
+bool diccDHashing::insert(int value) {
     if (value == -1 || value == -2)
         cout << "Can't be Inserted" << endl;
 
@@ -81,7 +72,7 @@ bool insert(int value) {
 }
 
 // Searches Value in the Table
-bool search(int value) {
+bool diccDHashing::search(int value) {
     int hashed = hash1(value);
     int offset = hash2(value);
     int initialPos = hashed;
@@ -102,7 +93,7 @@ bool search(int value) {
 }
 
 // Erases Value of the Table
-void erase(int value) {
+void diccDHashing::erase(int value) {
     if(!search(value))
         return;    
         
@@ -120,12 +111,12 @@ void erase(int value) {
 }
 
 // Returns true if the Table is Full
-bool isFull() {
+bool diccDHashing::isFull() {
     return keysPresent == tableSize;
 }
 
 // Hash the string as Int so Double Hashing is possible
-unsigned int stringToInt(string s) {
+unsigned int diccDHashing::stringToInt(string s) {
     const int p = 31; // Aprop  del numero de caracters
     const unsigned int m = INT64_C(1) << (sizeof(int)*8 - 1);
     unsigned int hash_value = 0;
@@ -137,8 +128,17 @@ unsigned int stringToInt(string s) {
     return hash_value;
 }
 
+// Sends a BFS dor each letter on the soup
+void diccDHashing::exploreSoup() {
+    vector<vector<char>> used = soup;
+    string s = "";
+    for (int i = 0; i < soupSize; ++i)
+        for (int j = 0; j < soupSize; ++j)
+            exploreSoupDeep(s, i, j, used, 1);
+}
+
 // Explores All Combinations of the Soup
-void exploreSoup(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total) {
+void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total) {
     // Set
     used[x][y] = -1;
     s.push_back(soup[x][y]);
@@ -163,7 +163,7 @@ void exploreSoup(string& s, int8_t x, int8_t y, vector<vector<char>>& used, cons
             char aux = used[x][y];
             if (aux != -1) {
                 used[x][y] = -1;
-                exploreSoup(s, x, y, used, total+1);
+                exploreSoupDeep(s, x, y, used, total+1);
                 used[x][y] = aux;
             }
         }
@@ -177,7 +177,7 @@ void exploreSoup(string& s, int8_t x, int8_t y, vector<vector<char>>& used, cons
 }
 
 // Assigns Words to the Map, if they don't fit, multiply the size by 2
-void assignWords() {
+void diccDHashing::assignWords() {
     doubleHash(tableSize);
     for (int i = 0; i < totalWords; ++i) {
         if (insert(stringToInt(words[i]))) {
@@ -191,14 +191,20 @@ void assignWords() {
     }
 }
 
-int main() {
-    // Read Words to Find
+void diccDHashing::readInput() {
+    readWords();
+    readSoup();
+}
+
+void diccDHashing::readWords () {
     cin >> totalWords;
     words = vector<string>(totalWords, "-1");
     for (int i = 0; i < totalWords; ++i) 
         cin >> words[i];
     assignWords();
+}
 
+void diccDHashing::readSoup () {
     // Read Soup Size
     cin >> soupSize;
 
@@ -208,12 +214,4 @@ int main() {
     for (int i = 0; i < soupSize; ++i)
         for (int j = 0; j < soupSize; ++j)
             cin >> soup[i][j];
-        
-    // Explore Soup
-    vector<vector<char>> used = soup;
-    string s = "";
-    for (int i = 0; i < soupSize; ++i)
-        for (int j = 0; j < soupSize; ++j)
-            exploreSoup(s, i, j, used, 1);
-        
 }
