@@ -2,7 +2,7 @@
 
 Trie::Trie(vector<string> P) {
     arrel = new NodeTrie();
-    for (auto i : P) {
+    for (const auto& i : P) {
         afegirParaula(i);
     }
 }

@@ -1,4 +1,5 @@
 #include "diccTrie.h"
+#include <vector>
 
 /* Mira si una determinada posició quan es fa el backtrack al taulell es troba fora */
 bool diccTrie::esFora(int i, int j, vector<vector<char>>& taulell) {
@@ -46,3 +47,4 @@ vector<string> diccTrie::cercaParaules(vector<string>& P, vector<vector<char>>& 
     }
     return paraules;
 }
+
