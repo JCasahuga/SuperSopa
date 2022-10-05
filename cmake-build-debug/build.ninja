@@ -79,6 +79,20 @@ build CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o: CXX_COMPILER__Projecte_S
   OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
   OBJECT_FILE_DIR = CMakeFiles/Projecte_SuperSopa.dir
 
+build CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o: CXX_COMPILER__Projecte_SuperSopa_Debug /Users/mac/Desktop/SuperSopa/diccTrie.cc || cmake_object_order_depends_target_Projecte_SuperSopa
+  DEP_FILE = CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++17
+  INCLUDES = -I/Users/mac/Desktop/SuperSopa/.
+  OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projecte_SuperSopa.dir
+
+build CMakeFiles/Projecte_SuperSopa.dir/Trie.cpp.o: CXX_COMPILER__Projecte_SuperSopa_Debug /Users/mac/Desktop/SuperSopa/Trie.cpp || cmake_object_order_depends_target_Projecte_SuperSopa
+  DEP_FILE = CMakeFiles/Projecte_SuperSopa.dir/Trie.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++17
+  INCLUDES = -I/Users/mac/Desktop/SuperSopa/.
+  OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projecte_SuperSopa.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Projecte_SuperSopa
@@ -87,7 +101,7 @@ build CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o: CXX_COMPILER__Projecte_S
 #############################################
 # Link the executable Projecte_SuperSopa
 
-build Projecte_SuperSopa: CXX_EXECUTABLE_LINKER__Projecte_SuperSopa_Debug CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o
+build Projecte_SuperSopa: CXX_EXECUTABLE_LINKER__Projecte_SuperSopa_Debug CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o CMakeFiles/Projecte_SuperSopa.dir/Trie.cpp.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/Projecte_SuperSopa.dir
   POST_BUILD = :
