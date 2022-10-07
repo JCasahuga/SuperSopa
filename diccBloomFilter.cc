@@ -79,7 +79,7 @@ void diccBloomFilter::buildFilter() {
         int wordValue = stringToInt(word);
         cerr << "word value for " << word << " is " << wordValue << endl;
         for (int hash : hashFunctions) {
-            bloomFilter[(wordValue*hash)%filterSize] = true;
+            bloomFilter[abs(hash*wordValue)%filterSize] = true;
         }
         if(word.size() > maxWordSize) maxWordSize = word.size();
     }
@@ -176,7 +176,7 @@ void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vect
 bool diccBloomFilter::search(int value) {
     bool found = true;
     for (int hash : hashFunctions) {
-        found = found and bloomFilter[(value*hash)%filterSize];
+        found = found and bloomFilter[abs(value*hash)%filterSize];
         //cerr << found << " found state ";
     }
     //cerr << endl;

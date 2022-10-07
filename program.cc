@@ -22,22 +22,26 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    int selection = stoi(argv[1]);
+    int select = atoi(argv[1]);
 
-    if (selection == 1) {
+    if (select == 1) {
         cerr << "Encara no esta implentat el vector ordenat" << endl;
     }
-    else if (selection == 2) {
+
+    else if (select == 2) {
         cerr << "Encara no esta implentat la trie" << endl;
     }
-    else if (selection == 3) {
-        diccBloomFilter dicc(0.0000000001); // Probabilitat de fals positiu desitjada
+
+    else if (select == 3) {
+        cerr << "Has seleccionat filtre de bloom" << endl;
+        diccBloomFilter dicc(0.1); // Probabilitat de fals positiu desitjada
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
     }
-    else if (selection == 4) {
-        diccDHashing dicc(64768);
+    else if (select == 4) {
+        cerr << "Has seleccionat double hashing" << endl;
+        diccDHashing dicc;
         // Read the innput
         dicc.readInput();
         // Explore Soup
