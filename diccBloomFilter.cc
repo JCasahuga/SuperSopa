@@ -76,11 +76,16 @@ void diccBloomFilter::buildFilter() {
     // cout << endl;
 
     for (string word : words) {
+        int wordValue = stringToInt(word);
+        cerr << "word value for " << word << " is " << wordValue << endl;
         for (int hash : hashFunctions) {
-            bloomFilter[(stringToInt(word)*hash)%filterSize] = true;
+            bloomFilter[(wordValue*hash)%filterSize] = true;
         }
         if(word.size() > maxWordSize) maxWordSize = word.size();
     }
+
+    // for (auto x : hashFunctions) cout << (stringToInt("word")*x)%filterSize << " ";
+    // cout << endl;
 
     // for (auto x : bloomFilter) cout << x;
     // cout << endl;
@@ -120,7 +125,6 @@ void diccBloomFilter::exploreSoup() {
             exploreSoupDeep(s, i, j, used, 1);
 }
 
-
 // Explores All Combinations of the Soup
 void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total) {
     // Set
@@ -142,7 +146,11 @@ void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vect
         return;
     }
 
-    // Loops to All Directions
+    // cout << "Inside explore for word!" << endl;
+    // for (auto x : hashFunctions) cout << (stringToInt("word")*x)%filterSize << " ";
+    //cout << endl;
+
+    //Loops to All Directions
     for (int8_t i = 0; i < 8; ++i) {
         x += offSetsX[i];
         y += offSetsY[i];
@@ -169,7 +177,8 @@ bool diccBloomFilter::search(int value) {
     bool found = true;
     for (int hash : hashFunctions) {
         found = found and bloomFilter[(value*hash)%filterSize];
-        if (not found) break;
+        //cerr << found << " found state ";
     }
+    //cerr << endl;
     return found;
 }

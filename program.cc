@@ -32,7 +32,6 @@ int main(int argc, char* argv[]) {
     }
     else if (selection == 3) {
         diccBloomFilter dicc(0.0000000001); // Probabilitat de fals positiu desitjada
-        // Read the innput
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
