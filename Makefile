@@ -1,15 +1,21 @@
 OPCIONS = -O2
 
-all: diccDHashing
+all: program
+
+program: program.o diccDHashing.o diccBloomFilter.o
+	g++ $(OPCIONS) -o program.x  diccDHashing.o diccBloomFilter.o program.o
 
 program.o: program.cc
 	g++ $(OPCIONS) -c program.cc
 
-diccDHashing: program.o diccDHashing.o
-	g++ $(OPCIONS) -o diccDHashing.x  diccDHashing.o program.o
-
 diccDHashing.o: diccDHashing.cc diccDHashing.h
-	gcc $(OPCIONS) -c diccDHashing.cc
+	g++ $(OPCIONS) -c diccDHashing.cc
+
+diccBloomFilter.o: diccBloomFilter.cc diccBloomFilter.h
+	g++ $(OPCIONS) -c diccBloomFilter.cc
+
+# diccSortedVector: diccSortedVector.cc
+# 	g++ diccSortedVector.cc -O2 -o diccSortedVector.x
 
 # diccTrie: diccTrie.o
 # 	g++ $(OPCIONS) -o diccTrie.x diccTrie.o
@@ -20,10 +26,6 @@ diccDHashing.o: diccDHashing.cc diccDHashing.h
 diccBloomFilter: diccBloomFilter.cc
 	g++ diccBloomFilter.cc -O2 -o diccBloomFilter.x
 
-
-diccSortedVector: diccSortedVector.cc
-	g++ diccSortedVector.cc -O2 -o diccSortedVector.x
-
 diccTrie: diccTrie.cc
 	g++ diccTrie.cc -O2 -o diccTrie.x
 
@@ -31,4 +33,4 @@ supersopa: supersopa.cc
 	g++ supersopa.cc -O2 -o supersopa.x
 
 clean:
-	rm program.o diccDHashing.o diccDHashing.x diccBloomFilter.o diccBloomFilter.x diccSortedVector.o diccSortedVector.x diccTrie.x diccTrie.o supersopa.x
+	rm program.o diccDHashing.o diccBloomFilter.o diccSortedVector.o diccTrie.o supersopa.x program.x

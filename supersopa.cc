@@ -6,6 +6,7 @@
 #include <fstream>
 #include <random>
 #include <vector>
+#include <cassert>
 #include <unordered_set>
 
 using namespace std;
@@ -27,7 +28,7 @@ enum direccions {
  * en diagonal al taulell
  * I.e com a mínim la mida del tauler ha de poder encabir la paraula més gran del subconjunt P ⊆ D
  */
-uint N = 10; /* assumirem inicialment que és 10 */
+uint N = 20; /* assumirem inicialment que és 10 */
 
 /* El nombre random calculat que ens permetrà escollir el nombre d'elements del subconjunt
  * P de paraules random del .txt */
@@ -125,7 +126,7 @@ void emplenarPosicions(vector<vector<char>>& taulell) {
 void imprimirTaulell(vector<vector<char>>& taulell) {
     for (const auto& i : taulell) {
         for (auto j: i) {
-            cout << j << " ";
+            cout << j;
         }
         cout << endl;
     }
