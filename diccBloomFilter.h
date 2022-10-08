@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <set>
 using namespace std;
 
 #ifndef _DICCBLOOMFILTER_HH_
@@ -58,8 +59,10 @@ private:
 
         // Words
         int maxWordSize = 0;
+        int minWordSize = 999;
         int totalWords;
         vector<string> words;
+        set<string> foundWords;
 };
 
 #endif
