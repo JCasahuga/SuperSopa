@@ -90,7 +90,7 @@ void canviarMidaTaulell(vector<string>& P) {
 //Calculem el subconjunt P de paraules de D que plantarem a la Sopa i canviem la mida de la Sopa si és necessari
 void calcularSubconjuntP(string& fitxer, vector<string>& P, vector<string>& D) {
     llegirParaules(fitxer, P, D);
-    cout << "---------------\n" << "Subconjunt P: " << endl;
+    cerr << "---------------\n" << "Subconjunt P: " << endl;
     for (auto i : P) cout << i << endl;
 }
 
@@ -246,8 +246,8 @@ void afegirParaulaSubconjuntP(vector<string>& P, vector<vector<char>>& taulell) 
 
 
 int main() {
-    cout << "Benvingut a SuperSopa!" << endl;
-    cout << "Escriu el nom del fitxer(sense l'extensió (.txt)) del qual \n"
+    cerr << "Benvingut a SuperSopa!" << endl;
+    cerr << "Escriu el nom del fitxer(sense l'extensió (.txt)) del qual \n"
             "t'agradaria llegir les paraules que vols cercar a la Super Sopa! \n"
             "Exemple: Si el fitxer es diu paraules.txt, escriu: paraules"
             << endl;
@@ -259,12 +259,16 @@ int main() {
     calcularSubconjuntP(fitxer, P, D);
     canviarMidaTaulell(P);
 
-    cout << "---------------\n" << "SUPER SOPA!" << endl;
+    cerr << "---------------\n" << "SUPER SOPA!" << endl;
     vector<vector<char>> taulell(N,vector<char>(N));
     generarTaulellBuit(taulell);
 
     afegirParaulaSubconjuntP(P, taulell);
+    
+    cout << D.size() << endl;
+    cout << P.size() << endl;
 
     emplenarPosicions(taulell);
+    cout << taulell.size() << endl;
     imprimirTaulell(taulell);
 }
