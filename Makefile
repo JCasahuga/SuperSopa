@@ -1,13 +1,27 @@
 OPCIONS = -O2
 
-diccTrie: diccTrie.cc diccTrie.h NodeTrie.h Trie.h
-	g++ -c -std=c++17 diccTrie.cc -O2 -o diccTrie.x
+all: program
+
+program: program.o diccDHashing.o diccBloomFilter.o diccTrie.o diccSortedVector.o
+	g++ $(OPCIONS) -o program.x  diccDHashing.o diccBloomFilter.o diccSortedVector.o diccTrie.o program.o
+
+program.o: program.cc
+	g++ $(OPCIONS) -c program.cc
+
+diccDHashing.o: diccDHashing.cc diccDHashing.h
+	g++ $(OPCIONS) -c diccDHashing.cc
+
+diccBloomFilter.o: diccBloomFilter.cc diccBloomFilter.h
+	g++ $(OPCIONS) -c diccBloomFilter.cc
+
+diccTrie.o: diccTrie.cc
+	g++ $(OPCIONS) -c diccTrie.cc
+
+diccSortedVector.o: diccSortedVector.cc
+	g++ $(OPCIONS) -c diccSortedVector.cc
 
 supersopa: supersopa.cc
-	g++ -c -std=c++17 supersopa.cc -O2 -o supersopa.x
-
-trie: Trie.cpp Trie.h NodeTrie.h
-	g++ -c -std=c++17 Trie.cpp -O2 -o trie.x
+	g++ supersopa.cc -O2 -o supersopa.x
 
 clean:
-	rm program.o diccDHashing.o diccBloomFilter.o diccSortedVector.o diccTrie.o supersopa.x program.x
+	rm *.o *.x
