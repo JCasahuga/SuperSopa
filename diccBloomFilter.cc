@@ -82,6 +82,7 @@ void diccBloomFilter::buildFilter() {
             bloomFilter[abs(hash*wordValue)%filterSize] = true;
         }
         if(word.size() > maxWordSize) maxWordSize = word.size();
+        if(word.size() < minWordSize) minWordSize = word.size();
     }
 
     // for (auto x : hashFunctions) cout << (stringToInt("word")*x)%filterSize << " ";
@@ -123,6 +124,10 @@ void diccBloomFilter::exploreSoup() {
     for (int i = 0; i < soupSize; ++i)
         for (int j = 0; j < soupSize; ++j)
             exploreSoupDeep(s, i, j, used, 1);
+    
+    for (string s : foundWords) {
+        cout << s << endl;
+    }
 }
 
 // Explores All Combinations of the Soup
@@ -131,12 +136,13 @@ void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vect
     used[x][y] = -1;
     s.push_back(soup[x][y]);
 
-    const int v = stringToInt(s);
-
-    //cout << maxWordSize << endl;
-    //cout << "Checking for " << s << " with value " << v << endl;
+    //const int v = stringToInt(s);
+    
     // Is in the Hash Table?
-    if (search(v)) cout << "Found " << s << " Value " << v << endl;
+    if (s.size() >= minWordSize and (stringToInt(s))) {
+        foundWords.insert(s);
+        //cout << "Found " << s << " Value " << v << endl;
+    }
 
     // Over Maximum Size Word
     if (total >= maxWordSize) {
