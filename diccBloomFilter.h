@@ -40,9 +40,9 @@ private:
         bool search(int value);
 
         // Parameters
-        int filterSize;         //nº of elements in the filter
-        int k;                  //nº of hash funcctions to apply to any element
-        int c;                  //nº of elements stored in the bloom filter
+        int filterSize;                      //nº of elements in the filter
+        int k;                               //nº of hash funcctions to apply to any element
+        int c;                               //nº of elements stored in the bloom filter
         double probability = 0.05;           //probablity of false positive
 
         vector<bool> bloomFilter;
