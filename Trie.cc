@@ -1,6 +1,8 @@
 //#include "NodeTrie.h"
 #include "Trie.h"
 
+Trie::Trie(){}
+
 Trie::Trie(vector<string> P) {
     arrel = new NodeTrie();
     for (const auto& i : P) {

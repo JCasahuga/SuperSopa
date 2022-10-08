@@ -32,32 +32,32 @@ public:
     }
     };
     
-    // TRIE
-    class Trie {
-    private:
-        NodeTrie* arrel;
-    public:
-        NodeTrie* getArrel() {
-            return arrel;
-        };
-        Trie(vector<string> P) {
-            arrel = new NodeTrie();
-            for (auto i : P) {
-                afegirParaula(i);
-            }
-        }
-        void afegirParaula(string paraula) {
-            NodeTrie* actual = arrel;
-            for (auto c : paraula) {
-                int i = c - 'a';
-                if (actual->node[i] == nullptr) {
-                    actual->node[i] = new NodeTrie();
-                }
-                actual = actual->node[i];
-            }
-            actual->esFulla = true;
-        }
-    };
+    // // TRIE
+    // class Trie {
+    // private:
+    //     NodeTrie* arrel;
+    // public:
+    //     NodeTrie* getArrel() {
+    //         return arrel;
+    //     };
+    //     Trie(vector<string> P) {
+    //         arrel = new NodeTrie();
+    //         for (auto i : P) {
+    //             afegirParaula(i);
+    //         }
+    //     }
+    //     void afegirParaula(string paraula) {
+    //         NodeTrie* actual = arrel;
+    //         for (auto c : paraula) {
+    //             int i = c - 'a';
+    //             if (actual->node[i] == nullptr) {
+    //                 actual->node[i] = new NodeTrie();
+    //             }
+    //             actual = actual->node[i];
+    //         }
+    //         actual->esFulla = true;
+    //     }
+    // };
 
 
     Trie arbre;

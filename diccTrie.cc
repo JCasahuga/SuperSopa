@@ -16,7 +16,7 @@ void diccTrie::backtracking(Trie arbre, int i, int j, string paraula, vector<vec
 }
 
 /* Fem un DFS sobre el taulell per cercar les paraules */
-void diccTrie::backtrackingDeep(diccTrie::NodeTrie* arrel, int i, int j, string paraula, vector<vector<char>>& taulell, vector<string>& paraules) {
+void diccTrie::backtrackingDeep(NodeTrie* arrel, int i, int j, string paraula, vector<vector<char>>& taulell, vector<string>& paraules) {
     if (esFora(i,j,taulell) or taulell[i][j] == ' ') return;
 
     if(arrel->node[taulell[i][j]-'a'] != nullptr) {
@@ -49,7 +49,7 @@ vector<string> diccTrie::cercaParaules(vector<string>& P, vector<vector<char>>& 
     vector<string> paraules;
     for (int i = 0; i < taulell.size(); ++i) {
         for (int j = 0; j < taulell[0].size(); ++j) {
-            backtracking(arbre.getArrel(), i, j, "", taulell, paraules);
+            backtracking(arbre, i, j, "", taulell, paraules);
         }
     }
     return paraules;

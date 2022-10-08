@@ -15,6 +15,4 @@ class NodeTrie {
         bool esFulla;
 };
 
-
-
 #endif //PROJECTE_SUPERSOPA_NODETRIE_H

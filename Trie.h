@@ -5,6 +5,8 @@
 
 class Trie {
     public:
+        Trie();
+
         Trie(vector<string> P);
 
         NodeTrie* getArrel();
