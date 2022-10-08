@@ -8,7 +8,6 @@
 #include <vector>
 #include <cassert>
 #include <unordered_set>
-#include "diccTrie.h"
 
 using namespace std;
 
@@ -268,19 +267,4 @@ int main() {
 
     emplenarPosicions(taulell);
     imprimirTaulell(taulell);
-
-    //tenim duplicats ja que troba una mateixa paraula diverses vegades
-    //potser seria millor tenir un set per evitar duplicats
-    diccTrie dc;
-    vector<string> paraulesTrobades = dc.cercaParaules(D,taulell);
-
-    //el convertim en un unordered set per evitar els duplicats
-    unordered_set<string> s;
-    for (auto i : paraulesTrobades) s.insert(i);
-
-    //ens troba més paraules que les que plantem i que es troben a D
-    paraulesTrobades.assign(s.begin(),s.end());
-    sort(paraulesTrobades.begin(),paraulesTrobades.end());
-
-    for (auto i : s) cout << i << endl;
 }
