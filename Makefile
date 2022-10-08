@@ -15,6 +15,12 @@ diccDHashing.o: diccDHashing.cc diccDHashing.h
 diccBloomFilter.o: diccBloomFilter.cc diccBloomFilter.h
 	g++ $(OPCIONS) -c diccBloomFilter.cc
 
+<<<<<<< HEAD
+=======
+diccTrie.o: diccTrie.cc diccTrie.h
+	g++ $(OPCIONS) -c diccTrie.cc
+
+>>>>>>> d11b20d (makefile edited)
 diccSortedVector.o: diccSortedVector.cc diccSortedVector.h
 	g++ $(OPCIONS) -c diccSortedVector.cc
 
