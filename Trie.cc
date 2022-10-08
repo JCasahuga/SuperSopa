@@ -1,3 +1,4 @@
+//#include "NodeTrie.h"
 #include "Trie.h"
 
 Trie::Trie(vector<string> P) {
@@ -5,6 +6,10 @@ Trie::Trie(vector<string> P) {
     for (const auto& i : P) {
         afegirParaula(i);
     }
+}
+
+NodeTrie* Trie::getArrel() {
+    return arrel;
 }
 
 void Trie::afegirParaula(string paraula) {

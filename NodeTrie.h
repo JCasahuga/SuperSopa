@@ -1,19 +1,20 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
-
-struct NodeTrie {
-    vector<NodeTrie*> node;
-    bool esFulla;
-
-    NodeTrie() {
-        node = vector<NodeTrie*>(26, nullptr);
-        esFulla = false;
-    }
-};
 
 #ifndef PROJECTE_SUPERSOPA_NODETRIE_H
 #define PROJECTE_SUPERSOPA_NODETRIE_H
+
+class NodeTrie {
+
+    public:
+        //Constructora
+        NodeTrie();
+
+        vector<NodeTrie*> node;
+        bool esFulla;
+};
+
+
 
 #endif //PROJECTE_SUPERSOPA_NODETRIE_H

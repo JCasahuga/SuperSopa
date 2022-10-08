@@ -4,12 +4,15 @@
 #define PROJECTE_SUPERSOPA_TRIE_H
 
 class Trie {
-private:
-    NodeTrie* arrel;
-public:
-    NodeTrie* getArrel();
-    Trie(vector<string> P);
-    void afegirParaula(string paraula);
+    public:
+        Trie(vector<string> P);
+
+        NodeTrie* getArrel();
+
+        void afegirParaula(string paraula);
+        
+    private:
+        NodeTrie* arrel;
 };
 
 #endif //PROJECTE_SUPERSOPA_TRIE_H

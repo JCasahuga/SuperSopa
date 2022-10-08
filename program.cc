@@ -1,5 +1,4 @@
 #include "diccDHashing.h"
-#include "diccSortedVector.h"
 #include "diccBloomFilter.h"
 #include <iostream>
 using namespace std;
@@ -26,29 +25,8 @@ int main(int argc, char* argv[]) {
     int select = atoi(argv[1]);
 
     if (select == 1) {
-        cerr << "Has seleccionat el vector ordenat de bloom" << endl;
-        
-        diccSortedVector dicc;
-        /* vector<string> words = { "midnight", "badge",  "bag", "worker",   "banner", "wander" };
-        cerr << "Has seleccionat el vector ordenat de bloom" << endl;
-
-        diccSortedVector dicc(words); // Probabilitat de fals positiu desitjada
-
-        dicc.printDicc();
-
-        string a = "midnight";
-        string b = "hello";
-        string x = "midn";
-
-        cout << dicc.exists(a) << endl;
-        cout << dicc.exists(b) << endl;
-        cout << dicc.exists(x) << endl; */
-
-        dicc.readInput();
-        dicc.printDicc();
-        dicc.printSoup();
-        
-        }
+        cerr << "Encara no esta implentat el vector ordenat" << endl;
+    }
 
     else if (select == 2) {
         cerr << "Encara no esta implentat la trie" << endl;
