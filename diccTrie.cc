@@ -7,53 +7,51 @@
 diccTrie::diccTrie(){}
 
 /* Mira si una determinada posició quan es fa el backtrack al taulell es troba fora */
-bool diccTrie::esFora(int i, int j, vector<vector<char>>& taulell) {
-    return (i < 0 or i >= taulell.size() or j < 0 or j >= taulell[0].size());
+bool diccTrie::esFora(int i, int j) {
+    return (i < 0 or i >= soup.size() or j < 0 or j >= soup[0].size());
 }
 
-void diccTrie::backtracking(Trie arbre, int i, int j, string paraula, vector<vector<char>>& taulell, vector<string>& paraules)
+void diccTrie::backtracking(Trie arbre, int i, int j, string paraula)
 {
-    backtrackingDeep(arbre.getArrel(), i, j, paraula, taulell, paraules);
+    backtrackingDeep(reinterpret_cast<NodeTrie *>(arbre.getArrel()), i, j, paraula);
 }
 
 /* Fem un DFS sobre el taulell per cercar les paraules */
-void diccTrie::backtrackingDeep(NodeTrie* arrel, int i, int j, string paraula, vector<vector<char>>& taulell, vector<string>& paraules) {
-    if (esFora(i,j,taulell) or taulell[i][j] == ' ') return;
+void diccTrie::backtrackingDeep(NodeTrie* arrel, int i, int j, string paraula) {
+    if (esFora(i,j) or soup[i][j] == ' ') return;
 
-    if(arrel->node[taulell[i][j]-'a'] != nullptr) {
-        paraula += taulell[i][j];
-        arrel = arrel->node[taulell[i][j]-'a'];
+    if(arrel->node[soup[i][j]-'a'] != nullptr) {
+        paraula += soup[i][j];
+        arrel = arrel->node[soup[i][j]-'a'];
 
         if (arrel->esFulla) {
-            paraules.push_back(paraula);
+            words.push_back(paraula);
         }
 
-        char c = taulell[i][j];
-        taulell[i][j] = ' ';
+        char c = soup[i][j];
+        soup[i][j] = ' ';
 
-        backtrackingDeep(arrel, i+1, j, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i-1, j, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i, j+1, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i, j-1, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i+1, j+1, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i+1, j-1, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i-1, j+1, paraula, taulell, paraules);
-        backtrackingDeep(arrel, i-1, j-1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i+1, j, paraula);
+        backtrackingDeep(arrel, i-1, j, paraula);
+        backtrackingDeep(arrel, i, j+1, paraula);
+        backtrackingDeep(arrel, i, j-1, paraula);
+        backtrackingDeep(arrel, i+1, j+1, paraula);
+        backtrackingDeep(arrel, i+1, j-1, paraula);
+        backtrackingDeep(arrel, i-1, j+1, paraula);
+        backtrackingDeep(arrel, i-1, j-1, paraula);
 
-        taulell[i][j] = c;
+        soup[i][j] = c;
     }
 }
 
 /* La funció ens ajuda a cercar les paraules del D que es troben a la SuperSopa */
-vector<string> diccTrie::cercaParaules(vector<string>& P, vector<vector<char>>& taulell) {
-
-    vector<string> paraules;
-    for (int i = 0; i < taulell.size(); ++i) {
-        for (int j = 0; j < taulell[0].size(); ++j) {
-            backtracking(arbre, i, j, "", taulell, paraules);
+vector<string> diccTrie::cercaParaules() {
+    for (int i = 0; i < soup.size(); ++i) {
+        for (int j = 0; j < soup[0].size(); ++j) {
+            backtracking(arbre, i, j, "");
         }
     }
-    return paraules;
+    return words;
 }
 
 

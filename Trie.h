@@ -7,9 +7,9 @@ class Trie {
     public:
         Trie();
 
-        Trie(vector<string> P);
+        explicit Trie(vector<string> P);
 
-        NodeTrie* getArrel();
+        NodeTrie * getArrel();
 
         void afegirParaula(string paraula);
         

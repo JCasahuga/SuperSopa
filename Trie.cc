@@ -1,4 +1,3 @@
-//#include "NodeTrie.h"
 #include "Trie.h"
 
 Trie::Trie(){}
