@@ -2,6 +2,7 @@
 #include "Trie.h"
 #include "NodeTrie.h"
 #include <vector>
+#include <unordered_set>
 
 //Constructora
 diccTrie::diccTrie(){}
@@ -51,6 +52,10 @@ vector<string> diccTrie::cercaParaules() {
             backtracking(arbre, i, j, "");
         }
     }
+    unordered_set<string> s;
+    for (auto i : words) s.insert(i);
+    words = vector<string>(s.begin(),s.end());
+
     return words;
 }
 
