@@ -1,5 +1,6 @@
 #include "diccTrie.h"
 #include "Trie.h"
+#include "NodeTrie.h"
 #include <vector>
 
 //Constructora
@@ -30,14 +31,14 @@ void diccTrie::backtrackingDeep(NodeTrie* arrel, int i, int j, string paraula, v
         char c = taulell[i][j];
         taulell[i][j] = ' ';
 
-        backtracking(arrel,i+1,j, paraula, taulell, paraules);
-        backtracking(arrel,i-1,j, paraula, taulell, paraules);
-        backtracking(arrel,i,j+1, paraula, taulell, paraules);
-        backtracking(arrel,i,j-1, paraula, taulell, paraules);
-        backtracking(arrel,i+1,j+1, paraula, taulell, paraules);
-        backtracking(arrel,i+1,j-1, paraula, taulell, paraules);
-        backtracking(arrel,i-1,j+1, paraula, taulell, paraules);
-        backtracking(arrel,i-1,j-1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i+1, j, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i-1, j, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i, j+1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i, j-1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i+1, j+1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i+1, j-1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i-1, j+1, paraula, taulell, paraules);
+        backtrackingDeep(arrel, i-1, j-1, paraula, taulell, paraules);
 
         taulell[i][j] = c;
     }
