@@ -29,7 +29,6 @@ class diccTrie {
                 esFulla = false;
             }
         };
-
         Trie arbre;
 
         int totalWords;
