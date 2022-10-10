@@ -2,8 +2,8 @@ OPCIONS = -O2
 
 all: program
 
-program: program.o diccDHashing.o diccBloomFilter.o diccTrie.o diccSortedVector.o
-	g++ $(OPCIONS) -o program.x  diccDHashing.o diccBloomFilter.o diccSortedVector.o diccTrie.o program.o
+program: program.o diccDHashing.o diccBloomFilter.o  diccSortedVector.o
+	g++ $(OPCIONS) -o program.x  diccDHashing.o diccBloomFilter.o diccSortedVector.o  program.o
 
 program.o: program.cc
 	g++ $(OPCIONS) -c program.cc

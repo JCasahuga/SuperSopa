@@ -29,25 +29,12 @@ int main(int argc, char* argv[]) {
         cerr << "Has seleccionat el vector ordenat de bloom" << endl;
         
         diccSortedVector dicc;
-        /* vector<string> words = { "midnight", "badge",  "bag", "worker",   "banner", "wander" };
-        cerr << "Has seleccionat el vector ordenat de bloom" << endl;
-
-        diccSortedVector dicc(words); // Probabilitat de fals positiu desitjada
-
-        dicc.printDicc();
-
-        string a = "midnight";
-        string b = "hello";
-        string x = "midn";
-
-        cout << dicc.exists(a) << endl;
-        cout << dicc.exists(b) << endl;
-        cout << dicc.exists(x) << endl; */
-
+        cout << "Borrat" <<endl;
         dicc.readInput();
-        dicc.printDicc();
         dicc.printSoup();
-        
+        dicc.exploreSoup();
+        dicc.printDicc();
+
         }
 
     else if (select == 2) {
