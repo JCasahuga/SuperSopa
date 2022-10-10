@@ -28,7 +28,7 @@ enum direccions {
  * I.e com a mínim la mida del tauler ha de poder encabir la paraula més gran del subconjunt P ⊆ D
  */
 
-uint N = 10; /* assumirem inicialment que és 10 */
+uint N = 4; /* assumirem inicialment que és 10 */
 uint cont = N*N;
 
 /* El nombre random calculat que ens permetrà escollir el nombre d'elements del subconjunt
@@ -56,22 +56,22 @@ void llegirParaules(string& path, vector<string>& P, vector<string>& D) {
 
         size_t nombreParaules = randomNumber(paraules.size());
 
-        vector<string> seleccioRandom(nombreParaules);
+        //vector<string> seleccioRandom(nombreParaules);
 
         /* Ens selecciona una mostra aleatòria de paraules en funció del nombre aleatòri que surt */
-        sample(paraules.begin(), paraules.end(), back_inserter(seleccioRandom),
-               nombreParaules,mt19937{random_device{}()});
+        //sample(paraules.begin(), paraules.end(), back_inserter(seleccioRandom),
+        //       nombreParaules,mt19937{random_device{}()});
 
         /* Ens permet esborrar els elements buits que conté el vector seleccioRandom */
         auto esBuit = [](const string &s) {
             return s.find_first_not_of(" \t") == string::npos;
         };
 
-        seleccioRandom.erase(remove_if(seleccioRandom.begin(), seleccioRandom.end(),
-                                       esBuit), seleccioRandom.end());
+        //seleccioRandom.erase(remove_if(seleccioRandom.begin(), seleccioRandom.end(),
+         //                              esBuit), seleccioRandom.end());
 
         /* Guardem a P el subconjunt aleatòri de paraules */
-        P = seleccioRandom;
+        P = paraules;
         /* Guardem a D totes les paraules llegides a l'entrada */
         D = paraules;
     }
@@ -148,7 +148,7 @@ bool esLliure(posicioT& p, vector<vector<char>>& taulell) {
 }
 
 //Ens movem una posició en el taulell per col·locar el següent caràcter.
-posicioT mourePosicio(posicioT& p, direccions& d, vector<vector<char>>& taulell, bool& invalid) {
+posicioT mourePosicio(posicioT& p, direccions& d, vector<vector<char>>& taulell, bool& invalid, char c) {
     int i = p.i;
     int j = p.j;
 
@@ -214,7 +214,7 @@ posicioT mourePosicio(posicioT& p, direccions& d, vector<vector<char>>& taulell,
         direccioOrigen = direccions(rand()%8);
         goto repetim;
     }
-    if (!esLliure(novaPosicio,taulell)) {
+    if (!esLliure(novaPosicio,taulell) or taulell[novaPosicio.i][novaPosicio.j] == c) {
         novaPosicio = p;
         direccioProvada[direccioOrigen] = true;
         direccioOrigen = direccions(rand()%8);
@@ -225,7 +225,7 @@ posicioT mourePosicio(posicioT& p, direccions& d, vector<vector<char>>& taulell,
 
 //Col·loquem una paraula en una posició random però vàlida i seguint una direcció random
 void afegirParaula(const char *word, vector<vector<char>>& taulell) {
-    uint cinvalid = 0;
+    int cinvalid = -1;
     posicioT inici;
     direccions d;
 
@@ -234,24 +234,33 @@ void afegirParaula(const char *word, vector<vector<char>>& taulell) {
     d = direccions(rand() % 8);
 
     vector<vector<bool>> visitat(taulell.size(), vector<bool>(taulell.size(),false));
-    visitat[inici.i][inici.j] = true;
 
     repetim2:
-    while (!esLliure(inici,taulell) && !visitat[inici.i][inici.j] && !esDins(inici)) {
+    ++cinvalid;
+    if (cinvalid >= cont) return;
+
+    for (int i = 0; i < taulell.size(); ++i) {
+        for (int j = 0; j < taulell[0].size(); ++j) {
+            if (visitat[i][j]) {
+                taulell[i][j] = '-';
+                visitat[i][j] = false;
+            }
+        }
+    }
+    while ((!esLliure(inici,taulell) or word[0]) && !visitat[inici.i][inici.j] && !esDins(inici)) {
         inici.i = rand() % N;
         inici.j = rand() % N;
     }
+    visitat[inici.i][inici.j] = true;
 
     int i = 0;
     while (i < (int) strlen(word)) {
         taulell[inici.i][inici.j] = word[i];
         --cont;
         bool invalid = false;
-        inici = mourePosicio(inici, d, taulell, invalid);
+        inici = mourePosicio(inici, d, taulell, invalid, word[i+1]);
         if (invalid) {
             visitat[inici.i][inici.j] = true;
-            ++cinvalid;
-            if (cinvalid >= cont) return;
             goto repetim2;
         }
         ++i;
@@ -372,7 +381,7 @@ int main() {
 
     vector<string> P, D;
     calcularSubconjuntP(fitxer, P, D);
-    canviarMidaTaulell(P);
+    //canviarMidaTaulell(P);
 
     cout << "---------------\n" << "SUPER SOPA!" << endl;
     vector<vector<char>> taulell(N,vector<char>(N));
@@ -395,5 +404,6 @@ int main() {
     paraulesTrobades.assign(s.begin(),s.end());
     sort(paraulesTrobades.begin(),paraulesTrobades.end());
 
-    for (auto i : s) cout << i << endl;
+    for (auto i : paraulesTrobades) cout << i << endl;
+    cout << paraulesTrobades.size() << endl;
 }
