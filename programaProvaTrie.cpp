@@ -384,7 +384,7 @@ int main() {
     //canviarMidaTaulell(P);
 
     cout << "---------------\n" << "SUPER SOPA!" << endl;
-    vector<vector<char>> taulell(N,vector<char>(N));
+    vector<vector<char>> taulell(N, vector<char>(N));
     generarTaulellBuit(taulell);
 
     afegirParaulaSubconjuntP(P, taulell);
@@ -394,16 +394,16 @@ int main() {
 
     //tenim duplicats ja que troba una mateixa paraula diverses vegades
     //potser seria millor tenir un set per evitar duplicats
-    vector<string> paraulesTrobades = cercaParaules(D,taulell);
+    vector<string> paraulesTrobades = cercaParaules(D, taulell);
 
     //el convertim en un unordered set per evitar els duplicats
     unordered_set<string> s;
-    for (auto i : paraulesTrobades) s.insert(i);
+    for (auto i: paraulesTrobades) s.insert(i);
 
     //ens troba més paraules que les que plantem i que es troben a D
-    paraulesTrobades.assign(s.begin(),s.end());
-    sort(paraulesTrobades.begin(),paraulesTrobades.end());
+    paraulesTrobades.assign(s.begin(), s.end());
+    sort(paraulesTrobades.begin(), paraulesTrobades.end());
 
-    for (auto i : paraulesTrobades) cout << i << endl;
+    for (auto i: paraulesTrobades) cout << i << endl;
     cout << paraulesTrobades.size() << endl;
 }
