@@ -1,16 +1,16 @@
 #include "diccSortedVector.h"
 
 
-const Pos u = {0, -1}; 
+const Pos u = {0, -1};
+const Pos r = {1,0}; 
 const Pos d = {0, 1};
 const Pos l = {-1,0};
-const Pos r = {1,0};
 const Pos dl = {-1,1};
 const Pos dr = {1,1};
 const Pos ul = {-1,-1}; 
 const Pos ur = {1,-1}; 
 
-const vector<Pos> directions = {u, d, l, r, dl, dr, ul, ur};
+const vector<Pos> directions = {l,ul,u,ur, r, dr, d, dl };
 
 //Funcions auxiliars
 
@@ -55,7 +55,6 @@ int diccSortedVector::exists(string &word){
 }
 
 bool diccSortedVector::deleteWord(int i ){
-    cout << "Deleting word " << words.size() << endl;
     if( i >= 0 || i < words.size()){
         words.erase(words.begin()+i);
         return true;
@@ -65,26 +64,79 @@ bool diccSortedVector::deleteWord(int i ){
 
 //Actual Implementation of functions
 
-//Una paraula no pot reutilitzar lletres d'altres paraules
-//Falta guardar posicions de les paraules trobades i marcarles com a visited
+//Checking if position is in vector
+bool inPath(Pos pos, vector<Pos> path){
+    for(int i = 0; i < path.size(); i++){
+        if(path[i].x == pos.x && path[i].y == pos.y) return true;
+    }
+    return false;
+}
+
+
+//Function to keep track of used positions by other words and therefore avoid cycles
+void setVisited(vector<Pos>path, vector<vector<bool>> &visited){
+    for(int i = 0; i < path.size(); i++){
+        visited[path[i].x][path[i].y] = true;
+    }
+}
+
+
+//Build a Word from a vector of positions
+string diccSortedVector::buildWord(vector<Pos> word){
+    string result = "";
+    for ( int i = 0; i< word.size(); i++){
+        result=result+getSoup(word[i]);
+    }
+    return result;       
+}
+
+
+//Sum of two Positions
+Pos diccSortedVector::move(Pos pos, Pos next){
+    return {pos.x+next.x, pos.y+next.y};
+}
+
+//Utility function to check if a position is valid
+bool diccSortedVector::allowedMove(Pos final){
+    if(final.x < 0 || final.y < 0 || final.x >= soupSize || final.y > soupSize) return false;
+    return true;
+}
+
+
+//Explore soup
+// Worst case there are no words in the soup, so we have to check every position
+//Every position n² times the Backtracking algorithm times set Visited. Set visited has O(w) where w is the length of the word
 void diccSortedVector::exploreSoup () {
-    //Comencem per dalt a l'esquera
     vector<vector<bool>> visited(soupSize, vector<bool>(soupSize));
     init(visited, soupSize);
     vector<string> original = words;
-    cout<<"Hello visiting soup"<<endl; 
 
+    //For each position, if there's still words left to look for
+    // And it has not been used by another word, start a DFS
     for (int i = 0; i < soupSize && words.size()!=0;i++ ){
         for (int j= 0; j < soupSize && words.size()!=0;j++ ){
-            string stringInicial = "";
-            Pos inicial = {i,j};
-            cout<<"Accessing dfs"<< i << j <<endl;
-            bool result = DFS(inicial, stringInicial, visited);
-             
+            if(! visited[i][j]){
+                string stringInicial = "";
+                Pos inicial = {i,j};
+                vector<Pos> path = bckT(inicial, stringInicial, visited);
+                setVisited(path, visited); 
+                
+            }
         }    
     }
+
+    //Words not found that are in the dictionary, 
     cout << "Done, words not found: " << endl;
     printDicc();
+    //Printing of the soup words found
+    cout << "Words found; "<< endl; 
+    for(int i = 0; i < soupSize; i++){
+        for(int j = 0; j < soupSize; j++){
+            if(visited[i][j]) cout << soup[i][j] << " ";
+            else cout << "· ";
+        }
+        cout << endl;
+    }
 
 }
 
@@ -114,80 +166,47 @@ int diccSortedVector::binarySearch(string &word, int low, int high, bool prefix)
         }
 }
 
-
-Pos diccSortedVector::move(Pos pos, Pos next){
-    return {pos.x+next.x, pos.y+next.y};
-}
-
-bool diccSortedVector::allowedMove(Pos pos, Pos next){
-    Pos final = {pos.x+next.x, pos.y+next.y};
-    if(final.x < 0 || final.y < 0 || final.x >= soupSize || final.y > soupSize) return false;
-    return true;
-}
-
-string buildWord(vector<Pos> word){
-    string result = "";
-        for (for int i = 0; i< word.size(); i++){
-            result=result+getSoup(word[i]);
-        }
-    return result;       
-}
-
-// Function to perform DFS
-// Traversal on the matrix grid[]
-bool diccSortedVector::DFS(Pos pos, string builtWord, vector<vector<bool>> visited)
+// Function to perform backtracking
+// The total cost of the algorithm is the number of nodes of the actual tree times the cost of obtaining and processing each node. 
+vector<Pos> diccSortedVector::bckT(Pos pos, string builtWord, vector<vector<bool>> visited)
 {
     // Initialize a stack of pairs and
-    // push the starting cell into it
+    // push the starting cell and into it
     stack<pair<Pos, vector<Pos>>> st;
-    vector<Pos> cami = {pos}; 
-    st.push({pos, cami});
-    cout << "Pushed ";
+    vector<Pos> path; 
+    st.push({pos, path});
+    
 
-    if(exists(builtWord) == -1){ //Em sembla que aixo no serveix de re
-        cout << "No word starts with " << builtWord << endl;
-        return false;
-    }
     while (!st.empty()) {
+        //Extraction of the first element of the stack
         Pos curr = st.top().first;
         vector<Pos> word = st.top().second;
         word.push_back(curr);
         st.pop();  
+        //Build the word from the path
         string built = buildWord(word);
-        cout <<"PossibleWord: " << built << endl;
-
         
+        //Check if the word is in the dictionary, special binarySearch
         int x = exists(built);
-        cout << "State of substring: "<< built<< " " << x << endl; 
-        if( x >=0 ){
-            //Cas que han trobat la paraula
+        if( x >= 0 ){
+            //We have found the word, delete it from the dictionary
             string paraula = getDicc(x);
             bool borrat = deleteWord(x);
-            cout << "Found word: " << paraula << "--------------------------------------------" <<endl;
+            cout << "Found word: " << paraula  <<endl;
             if(!borrat) cout <<"Error, s'ha trobat una paraula que no es pot borrar: "<<  paraula <<endl; 
-            return true; 
+            return word; 
         }else if(x == -2 ){
-            cout << "Im in"<<endl;
-            //esc -> esc no troba resultat 
-            // Mark the current
-            // cell as visited
-            visited[curr.x][curr.y] = true;
-    
-            // Print the element at
-            // the current top cell    
-            // Push all the adjacent cells
-            for (int i = 0; i < 7; i++) {
+            //The word has not been found but it is a prefix of a word in the dictionary 
+            for (int i = 0; i < 8; i++) {
                 Pos adj = move(curr,directions[i]);
-                if(allowedMove(curr, adj) && ! visited[adj.x][adj.y]){
-                    cout<<"pushing"<<endl;
+                if(allowedMove(adj) && (!visited[adj.x][adj.y]) && !inPath(adj, word)){
                     st.push({adj, word});
                 }
             }
-        }else{
-
         }
+        //There exists no prefix of the word in the dictionary, so we discard it and stop exploring the path
     }
-    return false;
+    return {};
     //word is not there
 }
 
@@ -210,6 +229,9 @@ void diccSortedVector::printSoup(){
     }
 }
 
+void diccSortedVector::printPos(Pos p){
+    cout << "(" << p.x << "," << p.y << ")" << endl;
+}
 
 
 // Readers for constructions
@@ -223,12 +245,10 @@ void diccSortedVector::readInput() {
 }
 
 void diccSortedVector::readWords () {
-    string x;
-    cin >> x;
-    while(x != "END"){
-        words.push_back(x);
-        cin >> x;
-    } 
+    cin >> totalWords;
+    words = vector<string>(totalWords, "-1");
+    for (int i = 0; i < totalWords; ++i) 
+        cin >> words[i];
     sort(words.begin(),words.end());
     cout << "Words Read and sorted" << endl;
 }
@@ -236,19 +256,14 @@ void diccSortedVector::readWords () {
 
 
 void diccSortedVector::readSoup () {
-    cout << "Set Soup Size" << endl; 
     // Read Soup Size
-    soupSize =20;
+    cin >> soupSize;
 
     // Read Soup Values
     char c;
     soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
-    cout << soup.size() << soup[0].size() << endl; 
-
-    for (int i = 0; i < soupSize; ++i){
-        for (int j = 0; j < soupSize; ++j){
-            cin >> c;
-            soup[i][j] = c;
-        }
-    }
+    for (int i = 0; i < soupSize; ++i)
+        for (int j = 0; j < soupSize; ++j)
+            cin >> soup[i][j];
 }
+

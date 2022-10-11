@@ -29,7 +29,6 @@ int main(int argc, char* argv[]) {
         cerr << "Has seleccionat el vector ordenat de bloom" << endl;
         
         diccSortedVector dicc;
-        cout << "Borrat" <<endl;
         dicc.readInput();
         dicc.printSoup();
         dicc.exploreSoup();

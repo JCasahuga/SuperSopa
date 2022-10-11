@@ -53,13 +53,17 @@ class diccSortedVector
 
         void exploreSoup();
 
-        bool DFS(Pos pos, string builtWord, vector<vector<bool>> visited);
+        vector<Pos> bckT(Pos pos, string builtWord, vector<vector<bool>> visited);
         
         string getWord(int i);
         
         Pos move(Pos pos, Pos next);
 
-        bool allowedMove(Pos pos, Pos next);
+        bool allowedMove(Pos final);
+
+        string buildWord(vector<Pos> word);
+
+        void printPos(Pos p);
 
         string getDicc(int i);
         char getSoup(Pos pos);

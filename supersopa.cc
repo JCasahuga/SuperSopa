@@ -42,7 +42,7 @@ int randomNumber(double linies) {
 
 /* Funció que ens ajuda a llegir el subconjunt P de paraules del fitxer que se'ns proporciona */
 void llegirParaules(string& path, vector<string>& P, vector<string>& D) {
-    ifstream fitxer("../"+path+".txt");
+    ifstream fitxer("./"+path+".txt");
 
     vector<string> paraules;
     if (fitxer.is_open()) {
