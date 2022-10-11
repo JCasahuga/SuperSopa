@@ -141,7 +141,7 @@ bool addWordToSoup(string word)
 
 void fillSoupEmptySpaces() {
     for (int i = 0; i < soup.size(); ++i) {
-        for (int j = 0; j < soup[i].size(); ++j) soup[i][j] = rand()%24 + 'a';
+        for (int j = 0; j < soup[i].size(); ++j) if (soup[i][j] == '.') soup[i][j] = rand()%24 + 'a';
     }
 }
 
@@ -154,7 +154,7 @@ int main()
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(20);        // Result is saved in selectedWords var 
+    selectWordSet(20);     // Result is saved in selectedWords var 
     N = 20;                   // Deafult value = 20
     DEBUG = false;            // DEBUG mode
 
@@ -164,11 +164,11 @@ int main()
 
     int placedWords = 0;
     for (auto word : selectedWords) if(addWordToSoup(word)) ++placedWords;
-    if (DEBUG) cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
+    cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
 
-    // cout << dictionary.size() << endl;
-    // printDictionary();
+    cout << dictionary.size() << endl;
+    printDictionary();
 
     // cout << selectedWords.size();
     // printSelectedWords();
