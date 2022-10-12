@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o CMakeFiles/Projecte_SuperSopa.dir/program.cc.o CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o -o Projecte_SuperSopa 
