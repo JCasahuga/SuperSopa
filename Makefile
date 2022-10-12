@@ -129,149 +129,29 @@ Projecte_SuperSopa/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/build
 .PHONY : Projecte_SuperSopa/fast
 
-NodeTrie.o: NodeTrie.cc.o
-.PHONY : NodeTrie.o
+generator.o: generator.cc.o
+.PHONY : generator.o
 
 # target to build an object file
-NodeTrie.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o
-.PHONY : NodeTrie.cc.o
+generator.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o
+.PHONY : generator.cc.o
 
-NodeTrie.i: NodeTrie.cc.i
-.PHONY : NodeTrie.i
-
-# target to preprocess a source file
-NodeTrie.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.i
-.PHONY : NodeTrie.cc.i
-
-NodeTrie.s: NodeTrie.cc.s
-.PHONY : NodeTrie.s
-
-# target to generate assembly for a file
-NodeTrie.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.s
-.PHONY : NodeTrie.cc.s
-
-Trie.o: Trie.cc.o
-.PHONY : Trie.o
-
-# target to build an object file
-Trie.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o
-.PHONY : Trie.cc.o
-
-Trie.i: Trie.cc.i
-.PHONY : Trie.i
+generator.i: generator.cc.i
+.PHONY : generator.i
 
 # target to preprocess a source file
-Trie.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.i
-.PHONY : Trie.cc.i
+generator.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/generator.cc.i
+.PHONY : generator.cc.i
 
-Trie.s: Trie.cc.s
-.PHONY : Trie.s
-
-# target to generate assembly for a file
-Trie.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.s
-.PHONY : Trie.cc.s
-
-diccBloomFilter.o: diccBloomFilter.cc.o
-.PHONY : diccBloomFilter.o
-
-# target to build an object file
-diccBloomFilter.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o
-.PHONY : diccBloomFilter.cc.o
-
-diccBloomFilter.i: diccBloomFilter.cc.i
-.PHONY : diccBloomFilter.i
-
-# target to preprocess a source file
-diccBloomFilter.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.i
-.PHONY : diccBloomFilter.cc.i
-
-diccBloomFilter.s: diccBloomFilter.cc.s
-.PHONY : diccBloomFilter.s
+generator.s: generator.cc.s
+.PHONY : generator.s
 
 # target to generate assembly for a file
-diccBloomFilter.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.s
-.PHONY : diccBloomFilter.cc.s
-
-diccDHashing.o: diccDHashing.cc.o
-.PHONY : diccDHashing.o
-
-# target to build an object file
-diccDHashing.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o
-.PHONY : diccDHashing.cc.o
-
-diccDHashing.i: diccDHashing.cc.i
-.PHONY : diccDHashing.i
-
-# target to preprocess a source file
-diccDHashing.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.i
-.PHONY : diccDHashing.cc.i
-
-diccDHashing.s: diccDHashing.cc.s
-.PHONY : diccDHashing.s
-
-# target to generate assembly for a file
-diccDHashing.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.s
-.PHONY : diccDHashing.cc.s
-
-diccTrie.o: diccTrie.cc.o
-.PHONY : diccTrie.o
-
-# target to build an object file
-diccTrie.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o
-.PHONY : diccTrie.cc.o
-
-diccTrie.i: diccTrie.cc.i
-.PHONY : diccTrie.i
-
-# target to preprocess a source file
-diccTrie.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.i
-.PHONY : diccTrie.cc.i
-
-diccTrie.s: diccTrie.cc.s
-.PHONY : diccTrie.s
-
-# target to generate assembly for a file
-diccTrie.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.s
-.PHONY : diccTrie.cc.s
-
-program.o: program.cc.o
-.PHONY : program.o
-
-# target to build an object file
-program.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/program.cc.o
-.PHONY : program.cc.o
-
-program.i: program.cc.i
-.PHONY : program.i
-
-# target to preprocess a source file
-program.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/program.cc.i
-.PHONY : program.cc.i
-
-program.s: program.cc.s
-.PHONY : program.s
-
-# target to generate assembly for a file
-program.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/program.cc.s
-.PHONY : program.cc.s
+generator.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projecte_SuperSopa.dir/build.make CMakeFiles/Projecte_SuperSopa.dir/generator.cc.s
+.PHONY : generator.cc.s
 
 # Help Target
 help:
@@ -282,24 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Projecte_SuperSopa"
-	@echo "... NodeTrie.o"
-	@echo "... NodeTrie.i"
-	@echo "... NodeTrie.s"
-	@echo "... Trie.o"
-	@echo "... Trie.i"
-	@echo "... Trie.s"
-	@echo "... diccBloomFilter.o"
-	@echo "... diccBloomFilter.i"
-	@echo "... diccBloomFilter.s"
-	@echo "... diccDHashing.o"
-	@echo "... diccDHashing.i"
-	@echo "... diccDHashing.s"
-	@echo "... diccTrie.o"
-	@echo "... diccTrie.i"
-	@echo "... diccTrie.s"
-	@echo "... program.o"
-	@echo "... program.i"
-	@echo "... program.s"
+	@echo "... generator.o"
+	@echo "... generator.i"
+	@echo "... generator.s"
 .PHONY : help
 
 

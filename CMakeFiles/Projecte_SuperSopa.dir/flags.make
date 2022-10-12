@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/.
 
-CXX_FLAGS = 
+CXX_FLAGS = -std=gnu++11
 

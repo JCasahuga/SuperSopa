@@ -69,111 +69,31 @@ include CMakeFiles/Projecte_SuperSopa.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Projecte_SuperSopa.dir/flags.make
 
-CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o: diccTrie.cc
-CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccTrie.cc
+CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
+CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o: generator.cc
+CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/generator.cc
 
-CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccTrie.cc > CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.i
+CMakeFiles/Projecte_SuperSopa.dir/generator.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/generator.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/generator.cc > CMakeFiles/Projecte_SuperSopa.dir/generator.cc.i
 
-CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccTrie.cc -o CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.s
-
-CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o: Trie.cc
-CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/Trie.cc
-
-CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/Trie.cc > CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.i
-
-CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/Trie.cc -o CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.s
-
-CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o: NodeTrie.cc
-CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/NodeTrie.cc
-
-CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/NodeTrie.cc > CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.i
-
-CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/NodeTrie.cc -o CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.s
-
-CMakeFiles/Projecte_SuperSopa.dir/program.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/program.cc.o: program.cc
-CMakeFiles/Projecte_SuperSopa.dir/program.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/program.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/program.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/program.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/program.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/program.cc
-
-CMakeFiles/Projecte_SuperSopa.dir/program.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/program.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/program.cc > CMakeFiles/Projecte_SuperSopa.dir/program.cc.i
-
-CMakeFiles/Projecte_SuperSopa.dir/program.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/program.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/program.cc -o CMakeFiles/Projecte_SuperSopa.dir/program.cc.s
-
-CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o: diccBloomFilter.cc
-CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccBloomFilter.cc
-
-CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccBloomFilter.cc > CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.i
-
-CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccBloomFilter.cc -o CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.s
-
-CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o: CMakeFiles/Projecte_SuperSopa.dir/flags.make
-CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o: diccDHashing.cc
-CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o: CMakeFiles/Projecte_SuperSopa.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o -MF CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o.d -o CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o -c /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccDHashing.cc
-
-CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccDHashing.cc > CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.i
-
-CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/diccDHashing.cc -o CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.s
+CMakeFiles/Projecte_SuperSopa.dir/generator.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projecte_SuperSopa.dir/generator.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miquel/Documents/Q5/A/Supersopa/SuperSopa/generator.cc -o CMakeFiles/Projecte_SuperSopa.dir/generator.cc.s
 
 # Object files for target Projecte_SuperSopa
 Projecte_SuperSopa_OBJECTS = \
-"CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o" \
-"CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o" \
-"CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o" \
-"CMakeFiles/Projecte_SuperSopa.dir/program.cc.o" \
-"CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o" \
-"CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o"
+"CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o"
 
 # External object files for target Projecte_SuperSopa
 Projecte_SuperSopa_EXTERNAL_OBJECTS =
 
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/Trie.cc.o
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/NodeTrie.cc.o
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/program.cc.o
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/diccBloomFilter.cc.o
-Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/diccDHashing.cc.o
+Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o
 Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/build.make
 Projecte_SuperSopa: CMakeFiles/Projecte_SuperSopa.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Projecte_SuperSopa"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Projecte_SuperSopa"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Projecte_SuperSopa.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
