@@ -5,7 +5,7 @@
 #include <set>
 #include <cstdlib>
 #include "diccTrie.cc"
-#include <ctime>
+#include <chrono>
 
 using namespace std;
 
@@ -168,12 +168,10 @@ int main()
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
 
-    clock_t inici, fi;
-    ios_base::sync_with_stdio(false);
-    inici = clock();
+    auto inici = chrono::steady_clock::now();
     trie::main(dictionary,soup);
-    fi = clock();
+    auto fi = chrono::steady_clock::now();
 
-    clock_t tempsTrie = fi-inici;
-    cout << "Temps TRIE i cerca paraules : " <<  (double)(tempsTrie) / CLOCKS_PER_SEC << "s." << endl;
+    auto tempsTrie = fi-inici;
+    cout << "Temps TRIE i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 }
