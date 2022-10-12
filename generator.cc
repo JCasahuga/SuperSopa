@@ -141,7 +141,7 @@ bool addWordToSoup(string word)
 
 void fillSoupEmptySpaces() {
     for (int i = 0; i < soup.size(); ++i) {
-        for (int j = 0; j < soup[i].size(); ++j) if (soup[i][j] == '.') soup[i][j] = rand()%24 + 'a';
+        for (int j = 0; j < soup[i].size(); ++j) if (soup[i][j] == '.') soup[i][j] = rand()%26 + 'a';
     }
 }
 
