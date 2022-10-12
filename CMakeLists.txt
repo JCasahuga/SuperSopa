@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 project(Projecte_SuperSopa)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(.)
 
-add_executable(Projecte_SuperSopa programaProvaTrie.cpp)
+add_executable(Projecte_SuperSopa programaProvaTrie.cc)
