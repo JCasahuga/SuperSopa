@@ -1,6 +1,7 @@
 #include "diccDHashing.h"
 #include "diccBloomFilter.h"
-#include "diccTrie.h"
+#include "diccTrie.cc"
+#include "generator.cc"
 #include <iostream>
 using namespace std;
 
@@ -31,9 +32,7 @@ int main(int argc, char* argv[]) {
 
     else if (select == 2) {
         cerr << "Encara no esta implentat la trie" << endl;
-        diccTrie dicc;
-        dicc.readInput();
-        dicc.cercaParaules();
+        trie::main(dictionary,soup);
     }
 
     else if (select == 3) {
