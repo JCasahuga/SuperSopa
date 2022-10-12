@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(.)
 
-add_executable(Projecte_SuperSopa generator.cc)
+add_executable(Projecte_SuperSopa program.cc)
