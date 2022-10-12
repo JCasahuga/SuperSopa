@@ -4,8 +4,9 @@
 #include <algorithm>
 #include <set>
 #include <random>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include "diccTrie.cc"
+#include <ctime>
 
 using namespace std;
 
@@ -168,12 +169,12 @@ int main()
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
 
-    cout << dictionary.size() << endl;
-    printDictionary();
+    clock_t inici, fi;
+    ios_base::sync_with_stdio(false);
+    inici = clock();
+    trie::main(dictionary,soup);
+    fi = clock();
 
-    // cout << selectedWords.size();
-    // printSelectedWords();
-
-    cout << N << endl;
-    printSoup();
+    clock_t tempsTrie = fi-inici;
+    cout << "Temps TRIE i cerca paraules : " <<  (double)(tempsTrie) / CLOCKS_PER_SEC << "ms." << endl;
 }
