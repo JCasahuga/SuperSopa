@@ -65,7 +65,10 @@ int main(int argc, char* argv[]) {
     else if (select == 2) {
         vector<string> dictionary = readWordsTrie();
         vector<vector<char>> soup = readSoupTrie();
+        auto inici = chrono::steady_clock::now();
         trie::main(dictionary,soup);
+        auto fi = chrono::steady_clock::now();
+        cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
     }
 
     else if (select == 3) {
@@ -83,6 +86,4 @@ int main(int argc, char* argv[]) {
         // Explore Soup
         dicc.exploreSoup();
     }
-    auto fi = chrono::steady_clock::now();
-    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 }
