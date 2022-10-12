@@ -58,7 +58,7 @@ class diccDHashing
         // Hash Table & Parameters
         vector<int> hashTable;
         int keysPresent = 0;
-        int tableSize = INT64_C(1) << 1;
+        int tableSize = INT64_C(1) << 30;
         int prime;
 
         // Soup

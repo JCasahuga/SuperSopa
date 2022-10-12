@@ -52,7 +52,7 @@ unsigned int diccDHashing::hash2(int s) {
 // Inserts Value Into Table If Possible
 bool diccDHashing::insert(int value) {
     if (value == -1 || value == -2)
-        cout << "Can't be Inserted" << endl;
+        cerr << "Can't be Inserted" << endl;
 
     int hashed = hash1(value);
     int offset = hash2(value);
@@ -145,7 +145,7 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
 
     // Is in the Hash Table?
     const int v = stringToInt(s);
-    if (search(v)) cout << "Found " << s << " Value " << v << endl;
+    if (search(v)) cerr << "Found " << s << " Value " << v << endl;
 
     // Over Maximum Size Word
     if (total >= maxWordSize) {
@@ -180,6 +180,7 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
 void diccDHashing::assignWords() {
     doubleHash(tableSize);
     for (int i = 0; i < totalWords; ++i) {
+        //if (words[i].size() == 21) cerr << "biggest word "<< words[i] << endl;
         if (insert(stringToInt(words[i]))) {
             int size = words[i].size();
             maxWordSize = max(size, maxWordSize);
@@ -189,6 +190,7 @@ void diccDHashing::assignWords() {
             assignWords();
         }
     }
+    //cerr << "table size " <<tableSize << endl << " max word size " << maxWordSize << endl; 
 }
 
 void diccDHashing::readInput() {

@@ -88,7 +88,6 @@ void backtracking(NodeTrie* arrel, int i, int j, string paraula, vector<vector<c
 set<string> cercaParaules(vector<string>& P, vector<vector<char>>& taulell) {
     Trie t(P); //CREEEM EL TRIE AMB EL SUBCONJUNT P DE PARAULES
     NodeTrie* arrel = t.getArrel(); //OBTENIM EL NODE ARREL DEL TRIE
-
     set<string> paraules; //CONJUNT RESULTANT DE PARAULES QUE SÓN RESULTAT I PER TANT QUE ES TROBEN AL
     for (int i = 0; i < taulell.size(); ++i) {
         for (int j = 0; j < taulell[0].size(); ++j) {
@@ -105,8 +104,8 @@ namespace trie {
     int main(vector<string>& D, vector<vector<char>>& soup) {
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
-        for (auto i: paraulesSenseRepetir) cout << i << endl;
-        cout << paraulesSenseRepetir.size() << endl;
+        //for (auto i: paraulesSenseRepetir) cout << i << endl;
+        //cout << paraulesSenseRepetir.size() << endl;
 
         return 0;
     }

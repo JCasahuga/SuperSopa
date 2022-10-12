@@ -3,10 +3,9 @@
 #include <vector>
 #include <algorithm>
 #include <set>
-#include <cstdlib>
-#include "diccTrie.cc"
-#include <chrono>
-
+#include <random>
+#include <stdlib.h>
+#include <time.h>       
 using namespace std;
 
 typedef vector<char> Files;
@@ -168,9 +167,11 @@ int main()
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
 
-    auto inici = chrono::steady_clock::now();
-    trie::main(dictionary,soup);
-    auto fi = chrono::steady_clock::now();
+    printDictionary();
 
-    cout << "Temps TRIE i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
+    // cout << selectedWords.size();
+    // printSelectedWords();
+
+    cout << N << endl;
+    printSoup();
 }
