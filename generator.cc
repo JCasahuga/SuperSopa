@@ -172,6 +172,5 @@ int main()
     trie::main(dictionary,soup);
     auto fi = chrono::steady_clock::now();
 
-    auto tempsTrie = fi-inici;
     cout << "Temps TRIE i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 }
