@@ -3,7 +3,6 @@
 #include <vector>
 #include <algorithm>
 #include <set>
-#include <random>
 #include <cstdlib>
 #include "diccTrie.cc"
 #include <ctime>
@@ -176,5 +175,5 @@ int main()
     fi = clock();
 
     clock_t tempsTrie = fi-inici;
-    cout << "Temps TRIE i cerca paraules : " <<  (double)(tempsTrie) / CLOCKS_PER_SEC << "ms." << endl;
+    cout << "Temps TRIE i cerca paraules : " <<  (double)(tempsTrie) / CLOCKS_PER_SEC << "s." << endl;
 }
