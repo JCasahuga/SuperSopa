@@ -48,7 +48,7 @@ vector<string> readWordsTrie () {
     return words;
 }
 
-set<string> readSubsetTrie() {
+set<string> readSubset() {
     int subsetWords;
     cin >> subsetWords;
     vector<string> subsetDictionary;
@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
 
     else if (select == 2) {
         vector<string> dictionary = readWordsTrie();
-        set<string> subset = readSubsetTrie();
+        set<string> subset = readSubset();
         vector<vector<char>> soup = readSoupTrie();
         trie::main(dictionary,soup,subset);
     }
@@ -91,10 +91,11 @@ int main(int argc, char* argv[]) {
     else if (select == 4) {
         cerr << "Has seleccionat double hashing" << endl;
         diccDHashing dicc;
-        // Read the innput
+        // Read the input
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
+        dicc.checkSubset();
     }
     auto fi = chrono::steady_clock::now();
     cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::milliseconds>(fi-inici).count() << " miliseconds." << endl;
