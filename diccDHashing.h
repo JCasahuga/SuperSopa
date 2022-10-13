@@ -24,11 +24,17 @@ class diccDHashing
 
         void readWords ();
 
+        void readSubset();
+
         void readSoup ();
+
+        void checkSubset();
+
+        void printLoadingBar(float val);
 
         // Hash Table & Parameters
         hashingTable hT;
-        long int tableSize = INT64_C(1) << 2;
+        int tableSize = INT64_C(1) << 2;
 
         // Soup
         int soupSize;
@@ -43,7 +49,8 @@ class diccDHashing
         int totalWords;
         int totalFound = 0;
         vector<string> words;
-        set<string> wordsTrobades;
+        set<string> wordsTrobades = set<string>();
+        set<string> subset = set<string>();
 
         int totalPrefixs = 3;
         vector<int> prefixValues = vector<int>(10, 0);
@@ -52,7 +59,7 @@ class diccDHashing
 
     private:
         // Hash the string as Int so Double Hashing is possible
-        unsigned long int stringToInt(string s);
+        unsigned int stringToInt(string s);
 
         // Explores All Combinations of the Soup
         void exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total);
