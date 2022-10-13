@@ -42,14 +42,13 @@ int randomNumber(double linies) {
 
 /* Funció que ens ajuda a llegir el subconjunt P de paraules del fitxer que se'ns proporciona */
 void llegirParaules(string& path, vector<string>& P, vector<string>& D) {
-    ifstream fitxer("../"+path+".txt");
+    ifstream fitxer(path+".txt");
 
     vector<string> paraules;
     if (fitxer.is_open()) {
         string paraula;
         while (getline(fitxer, paraula)) {
             paraules.push_back(paraula);
-            cout << paraula << endl;
         };
         fitxer.close();
 
@@ -73,6 +72,8 @@ void llegirParaules(string& path, vector<string>& P, vector<string>& D) {
         P = seleccioRandom;
         /* Guardem a D totes les paraules llegides a l'entrada */
         D = paraules;
+        cout << D.size() << endl;
+        for (auto i : D) cout << i << endl;
     }
 }
 
@@ -91,7 +92,6 @@ void canviarMidaTaulell(vector<string>& P) {
 void calcularSubconjuntP(string& fitxer, vector<string>& P, vector<string>& D) {
     llegirParaules(fitxer, P, D);
     cerr << "---------------\n" << "Subconjunt P: " << endl;
-    for (auto i : P) cout << i << endl;
 }
 
 
@@ -238,12 +238,10 @@ void afegirParaula(const char *word, vector<vector<char>>& taulell) {
 void afegirParaulaSubconjuntP(vector<string>& P, vector<vector<char>>& taulell) {
     for (int i = 0; i < P.size(); ++i) {
         string paraula = P[i];
-        cout << P[i] << endl;
+        //cout << P[i] << endl;
         afegirParaula(paraula.c_str(),taulell);
     }
 }
-
-
 
 int main() {
     cerr << "Benvingut a SuperSopa!" << endl;
@@ -264,9 +262,6 @@ int main() {
     generarTaulellBuit(taulell);
 
     afegirParaulaSubconjuntP(P, taulell);
-    
-    cout << D.size() << endl;
-    cout << P.size() << endl;
 
     emplenarPosicions(taulell);
     cout << taulell.size() << endl;
