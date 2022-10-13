@@ -169,8 +169,7 @@ int main()
 
     printDictionary();
 
-    // cout << selectedWords.size();
-    // printSelectedWords();
+    printSelectedWords();
 
     cout << N << endl;
     printSoup();

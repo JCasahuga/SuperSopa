@@ -101,12 +101,16 @@ set<string> cercaParaules(vector<string>& P, vector<vector<char>>& taulell) {
 //////////////////////////// MAIN //////////////////////////////
 
 namespace trie {
-    int main(vector<string>& D, vector<vector<char>>& soup) {
+    int main(vector<string>& D, vector<vector<char>>& soup, set<string>& subconjunt) {
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
         for (auto i: paraulesSenseRepetir) cout << i << endl;
         cout << paraulesSenseRepetir.size() << endl;
 
+        if (includes(paraulesSenseRepetir.begin(), paraulesSenseRepetir.end(),
+                          subconjunt.begin(), subconjunt.end())) {
+            cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat la Trie" << endl;
+        }
         return 0;
     }
 }
