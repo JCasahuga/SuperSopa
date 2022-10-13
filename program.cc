@@ -76,8 +76,8 @@ int main(int argc, char* argv[]) {
 
     else if (select == 2) {
         vector<string> dictionary = readWordsTrie();
-        set<string> subset = readSubsetTrie();
         vector<vector<char>> soup = readSoupTrie();
+        set<string> subset = readSubsetTrie();
         trie::main(dictionary,soup,subset);
     }
 
