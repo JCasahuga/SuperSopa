@@ -169,7 +169,7 @@ int main()
 
     printDictionary();
 
-    // cerr << selectedWords.size();
+     // cerr << selectedWords.size();
     // printSelectedWords();
 
     cout << N << endl;
