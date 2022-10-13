@@ -1,7 +1,9 @@
 #include "diccBloomFilter.h"
 #include <iostream>
 #include <iostream>
+#include <unordered_set>
 #include <vector>
+#include <algorithm>
 #include <cmath>
 using namespace std;
 
@@ -67,24 +69,54 @@ void diccBloomFilter::buildFilter() {
          << "nº of words " << c << endl << endl;
 
     bloomFilter = vector<bool>(filterSize, false);
+
+    prefixFilterSize = min(filterSize*totalWords, int(1e9));
+    bloomFilterPrefix = vector<bool>(prefixFilterSize, false);
     
     hashFunctions.clear();
     for (int i = 0; i < k; ++i) {
         hashFunctions.push_back(randomNumber());
     }
+    if (withPrefix) {
+        hashFunctionsPrefix.clear();
+            for (int i = 0; i < k; ++i) {
+            hashFunctionsPrefix.push_back(randomNumber());
+        }
+    }
     // for (auto x : hashFunctions) cout << x << " ";
     // cout << endl;
-
+    unordered_set<string> prefixs;
     for (string word : words) {
         int wordValue = stringToInt(word);
        // cerr << "word value for " << word << " is " << wordValue << endl;
         for (int hash : hashFunctions) {
             bloomFilter[abs(hash*wordValue)%filterSize] = true;
         }
+        if (withPrefix) {
+            for (int hash : hashFunctionsPrefix) {
+                bloomFilterPrefix[abs(hash*wordValue)%prefixFilterSize] = true;
+            }
+            string s;
+            for (int i = 0; i < word.size(); ++i) {
+               s.push_back(word[i]);
+               prefixs.insert(s);
+               //cerr << "word value for " << s << " is " << wordValue << endl;
+            }
+        }
+        
         if(word.size() > maxWordSize) maxWordSize = word.size();
         if(word.size() < minWordSize) minWordSize = word.size();
     }
 
+    //cerr << "prefix size: " << prefixs.size() << endl;
+    if (withPrefix) for (string p : prefixs) addWordPrefix(p);
+
+    //for (auto i : bloomFilterPrefix) cerr << i << " ";
+    //cerr << endl;
+
+
+    //for (bool b : bloomFilterPrefix) cout << b;
+    //cout << endl;
     // for (auto x : hashFunctions) cout << (stringToInt("word")*x)%filterSize << " ";
     // cout << endl;
 
@@ -92,23 +124,60 @@ void diccBloomFilter::buildFilter() {
     // cout << endl;
 }
 
+void diccBloomFilter::addWordPrefix(string value) {
+    //cerr << "here" << endl;
+    string s;
+    //cerr << "updating prefix " << s << endl;
+    int wordValue = stringToInt(value);
+    for (int hash : hashFunctionsPrefix) {
+        //cerr << "pos: "<< abs(hash*wordValue)%prefixFilterSize << endl;
+        bloomFilterPrefix[abs(hash*wordValue)%prefixFilterSize] = true;
+    }
+}
+
+bool diccBloomFilter::esSubconjunt() {
+    if (includes(foundWords.begin(), foundWords.end(),
+                 subsetDictionary.begin(), subsetDictionary.end())) {
+        cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat el filtre de Bloom" << endl;
+        return true;
+    }
+    return false;
+}
+
 void diccBloomFilter::readInput() {
     readWords();
+    subsetDictionary = readSubset();
     readSoup();
+    //cerr << "encarbassot" << endl;
+}
+
+
+set<string> diccBloomFilter::readSubset() {
+    int subsetWords;
+    cin >> subsetWords;
+    vector<string> subsetDictionary;
+    subsetDictionary = vector<string>(subsetWords, "-1");
+    for (int i = 0; i < subsetWords; ++i) {
+        cin >> subsetDictionary[i];
+    }
+    set<string> P(subsetDictionary.begin(),subsetDictionary.end());
+    return P;
 }
 
 void diccBloomFilter::readWords () {
     cin >> totalWords;
     words = vector<string>(totalWords, "-1");
-    for (int i = 0; i < totalWords; ++i) 
+    for (int i = 0; i < totalWords; ++i) {
         cin >> words[i];
+        //cerr << words[i] << endl;
+    }
     buildFilter();
 }
 
 void diccBloomFilter::readSoup () {
     // Read Soup Size
     cin >> soupSize;
-
+    //cerr << "soup size (just received): " << soupSize << endl;
     // Read Soup Values
     char c;
     soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
@@ -119,53 +188,87 @@ void diccBloomFilter::readSoup () {
 
 // Sends a BFS dor each letter on the soup
 void diccBloomFilter::exploreSoup() {
-    vector<vector<char>> used = soup;
+    vector<vector<bool>> used;
+   // cerr << "enrering" << endl;
     string s = "";
-    for (int i = 0; i < soupSize; ++i)
-        for (int j = 0; j < soupSize; ++j)
+    //cout << "heeeere" << endl;
+    used = vector<vector<bool>>(soupSize, vector<bool>(soupSize, false));
+    //cerr << "soup size " << soupSize << endl;
+    // for (auto i : used) {
+    //     for(auto j : i) cerr << j;
+    //     cout << endl;
+    // }
+    // cerr << "here" << endl;
+    // cerr << "Result " << search(stringToInt("cis")) << endl;
+    // cerr << "Result " << searchPrefix(stringToInt("cfis")) << endl;
+    // cerr << "Result " << searchPrefix(stringToInt("fis")) << endl;
+    // cerr << "Result " << searchPrefix(stringToInt("cfi")) << endl;
+    // cerr << "Result " << searchPrefix(stringToInt("fi")) << endl;
+    // cerr << "Result " << searchPrefix(stringToInt("f")) << endl;
+    for (int i = 0; i < soupSize; ++i) {
+        //cerr << "In " << i << " from " << soupSize << endl;
+        for (int j = 0; j < soupSize; ++j) {
+           // cerr << "In " << j << " from " << soupSize << endl;
             exploreSoupDeep(s, i, j, used, 1);
-    
-    for (string s : foundWords) {
-        cout << s << endl;
+        }
     }
+
+    
+    cout << "We found " << foundWords.size() << " words." << endl;
+    // for (string s : foundWords) {
+    //     cout << s << endl;
+    // }
+    esSubconjunt();
 }
 
 // Explores All Combinations of the Soup
-void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total) {
+void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<bool>>& used, const int total) {
     // Set
-    used[x][y] = -1;
+    used[x][y] = true;
     s.push_back(soup[x][y]);
 
-    //const int v = stringToInt(s);
-    
-    // Is in the Hash Table?
-    if (s.size() >= minWordSize and (stringToInt(s))) {
-        foundWords.insert(s);
-        //cout << "Found " << s << " Value " << v << endl;
-    }
+    int v = stringToInt(s);
+
+    //cerr << "checking " << s << endl;
 
     // Over Maximum Size Word
-    if (total >= maxWordSize) {
+    if (s.size() > maxWordSize) {
         // Unset
-        used[x][y] = soup[x][y];
+        used[x][y] = false;
         s.pop_back();
         return;
     }
+
+    if (withPrefix and (not searchPrefix(v)))
+    {
+        //cerr << "not any word starting with that for " << s << endl;
+        used[x][y] = false;
+        s.pop_back();
+        return ;
+    }
+
+    // Is in the Hash Table?
+    if (search(v)) {
+        foundWords.insert(s);
+        //cerr << "Found " << s << " Value " << v << endl;
+    }
+
 
     // cout << "Inside explore for word!" << endl;
     // for (auto x : hashFunctions) cout << (stringToInt("word")*x)%filterSize << " ";
     //cout << endl;
 
     //Loops to All Directions
-    for (int8_t i = 0; i < 8; ++i) {
+    for (int i = 0; i < 8; ++i) {
         x += offSetsX[i];
         y += offSetsY[i];
+        //cerr << "Going to check " << x << " - " << y << endl;
         if (min(x, y) >= 0 && max(x, y) < soupSize) {
-            char aux = used[x][y];
-            if (aux != -1) {
-                used[x][y] = -1;
+            if (not used[x][y]) {
+                //cerr << "Exploring " << x << " - " << y << endl;
+                used[x][y] = true;
                 exploreSoupDeep(s, x, y, used, total+1);
-                used[x][y] = aux;
+                used[x][y] = false;
             }
         }
         x -= offSetsX[i];
@@ -174,7 +277,7 @@ void diccBloomFilter::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vect
     
     // Unset
     s.pop_back();
-    used[x][y] = soup[x][y];
+    used[x][y] = false;
 }
 
 
@@ -183,6 +286,17 @@ bool diccBloomFilter::search(int value) {
     bool found = true;
     for (int hash : hashFunctions) {
         found = found and bloomFilter[abs(value*hash)%filterSize];
+        //cerr << found << " found state ";
+    }
+    //cerr << endl;
+    return found;
+}
+
+// Searches Value in the Table
+bool diccBloomFilter::searchPrefix(int value) {
+    bool found = true;
+    for (int hash : hashFunctionsPrefix) {
+        found = found and bloomFilterPrefix[abs(value*hash)%prefixFilterSize];
         //cerr << found << " found state ";
     }
     //cerr << endl;

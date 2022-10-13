@@ -7,6 +7,7 @@
         "chrono": "cpp",
         "cstdlib": "cpp",
         "algorithm": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "set": "cpp"
     }
 }

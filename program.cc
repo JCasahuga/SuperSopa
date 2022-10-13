@@ -83,7 +83,7 @@ int main(int argc, char* argv[]) {
 
     else if (select == 3) {
         cerr << "Has seleccionat filtre de bloom" << endl;
-        diccBloomFilter dicc(0.1); // Probabilitat de fals positiu desitjada
+        diccBloomFilter dicc(0.01); // Probabilitat de fals positiu desitjada
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
@@ -97,5 +97,5 @@ int main(int argc, char* argv[]) {
         dicc.exploreSoup();
     }
     auto fi = chrono::steady_clock::now();
-    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
+    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::milliseconds>(fi-inici).count() << " miliseconds." << endl;
 }

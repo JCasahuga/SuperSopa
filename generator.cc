@@ -147,16 +147,16 @@ void fillSoupEmptySpaces() {
 
 //////////////////////////// MAIN //////////////////////////////
 
-int main()
+int main(int argc, char* argv[])
 {
     srand(1234);
 
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(300);     // Result is saved in selectedWords var 
-    N = 20;                   // Deafult value = 20
-    DEBUG = false;            // DEBUG mode
+    selectWordSet(20);              // Result is saved in selectedWords var 
+    N = atoi(argv[1]);              // Deafult value = 20
+    DEBUG = false;                  // DEBUG mode
 
     //printSelectedWords();
 
