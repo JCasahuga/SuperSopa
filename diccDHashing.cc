@@ -133,8 +133,9 @@ void diccDHashing::readWords () {
     }
 
     for (int i = 1; i <= totalPrefixs; ++i) {
-        int val = (maxWordSize/(totalPrefixs+1)) * i;
-        prefixValues[i-1] = max(val-1, 7);
+        int val = ((maxWordSize-5)/(totalPrefixs)) * (i-1) + 6;
+        prefixValues[i-1] = val - 1;
+        cout << prefixValues[i-1] << endl;
     }
     assignWords();
 }
