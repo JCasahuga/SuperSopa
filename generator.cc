@@ -149,7 +149,7 @@ void fillSoupEmptySpaces() {
 
 int main()
 {
-    srand(time(NULL));
+    srand(1234);
 
     string word;
     while (cin >> word) dictionary.push_back(word);

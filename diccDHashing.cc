@@ -12,115 +12,12 @@ using namespace std;
 
 diccDHashing::diccDHashing(){}
 
-diccDHashing::diccDHashing(const int& p){
-    prime = p; 
-}
-
-// Check if value is Prime
-bool diccDHashing::isPrime(const int n)
-{
-    if (n == 1 || n == 0)
-        return false;
-
-    int s = sqrt(n);
-    for (int i = 2; i < s; i++) {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
-
-// Initialize Hash Table
-void diccDHashing::doubleHash(int size) {
-    tableSize = size;
-    
-    prime = size - 1;
-    while (!isPrime(prime)) ++prime;
-    hashTable = vector<int>(prime, -1);
-}
-
-// Returns value of h1(s)
-unsigned int diccDHashing::hash1(int s) {
-    return s%tableSize;
-}
-
-// Returns value of h2(s)
-unsigned int diccDHashing::hash2(int s) {
-    return prime - (s%prime);
-}
-
-// Inserts Value Into Table If Possible
-bool diccDHashing::insert(int value) {
-    if (value == -1 || value == -2)
-        cerr << "Can't be Inserted" << endl;
-
-    int hashed = hash1(value);
-    int offset = hash2(value);
-    int initialPos = hashed;
-    bool firstItr = true;
-
-    while (hashTable[hashed] != -1) {
-        if (initialPos == hashed && !firstItr) return false;
-        if (hashTable[hashed] == -2) break;
-        hashed = (hashed+offset) % tableSize;
-        firstItr = false;
-    }
-
-    hashTable[hashed] = value;
-    ++keysPresent;
-    return true;
-}
-
-// Searches Value in the Table
-bool diccDHashing::search(int value) {
-    int hashed = hash1(value);
-    int offset = hash2(value);
-    int initialPos = hashed;
-    bool firstItr = true;
-    while(true) {
-        if(hashTable[hashed] == -1)                  
-            break;
-        else if(hashTable[hashed] == value)      
-            return true;
-        else if(hashed == initialPos && !firstItr)    // Stop search if one complete traversal of hash table is completed.
-            return false;
-        else
-            hashed = ((hashed + offset) % tableSize);  // if none of the above cases occur then update the index and check at it.
-
-        firstItr = false;
-    }
-    return false;
-}
-
-// Erases Value of the Table
-void diccDHashing::erase(int value) {
-    if(!search(value))
-        return;    
-        
-    int hashed = hash1(value);
-    int offset = hash2(value);
-
-    while(hashTable[hashed] != -1) {
-        if(hashTable[hashed] == value){
-            hashTable[hashed] = -2;
-            keysPresent--;
-            return;
-        }
-        else hashed = (hashed + offset) % tableSize;
-    }
-}
-
-// Returns true if the Table is Full
-bool diccDHashing::isFull() {
-    return keysPresent == tableSize;
-}
-
 // Hash the string as Int so Double Hashing is possible
-unsigned int diccDHashing::stringToInt(string s) {
+unsigned long int diccDHashing::stringToInt(string s) {
     const int p = 31; // Aprop  del numero de caracters
-    const unsigned int m = INT64_C(1) << (sizeof(int)*8 - 1);
-    unsigned int hash_value = 0;
-    int p_pow = 1;
+    const unsigned long int m = INT64_C(1) << (sizeof(long int)*8 - 1);
+    unsigned long int hash_value = 0;
+    long int p_pow = 1;
     for (int i = 0; i < s.size(); ++i) {
         hash_value = (hash_value + (s[i] - 'a' + 1) * p_pow) % m;
         p_pow = (p_pow * p) % m;
@@ -135,6 +32,8 @@ void diccDHashing::exploreSoup() {
     for (int i = 0; i < soupSize; ++i)
         for (int j = 0; j < soupSize; ++j)
             exploreSoupDeep(s, i, j, used, 1);
+
+    cout << "Total Words Found " << wordsTrobades.size() << endl;
 }
 
 // Explores All Combinations of the Soup
@@ -144,8 +43,23 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
     s.push_back(soup[x][y]);
 
     // Is in the Hash Table?
-    const int v = stringToInt(s);
-    if (search(v)) cerr << "Found " << s << " Value " << v << endl;
+    const long int v = stringToInt(s);
+    //search(v);
+    if (hT.search(v)) {
+        wordsTrobades.insert(s);
+    }
+
+    if (usePrefixPruning) {
+        for (int i = 0; i < totalPrefixs; ++i) {
+            if (total == prefixValues[i]) {
+                if (!preHT[i].search(v)) {
+                    used[x][y] = soup[x][y];
+                    s.pop_back();
+                    return;
+                }
+            }
+        }
+    }
 
     // Over Maximum Size Word
     if (total >= maxWordSize) {
@@ -178,38 +92,57 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
 
 // Assigns Words to the Map, if they don't fit, multiply the size by 2
 void diccDHashing::assignWords() {
-    doubleHash(tableSize);
+    hT.doubleHash(tableSize);
+    for (int i = 0; i < totalPrefixs; ++i) preHT[i].doubleHash(tableSize);
+
     for (int i = 0; i < totalWords; ++i) {
-        //if (words[i].size() == 21) cerr << "biggest word "<< words[i] << endl;
-        if (insert(stringToInt(words[i]))) {
-            int size = words[i].size();
-            maxWordSize = max(size, maxWordSize);
-        } else {
-            keysPresent = 0;
+        if (!hT.insert(stringToInt(words[i]))) {
             tableSize <<= 1;
             assignWords();
         }
+        if (usePrefixPruning) {
+            for (int i = 0; i < totalPrefixs; ++i) {
+                if (words[i].size() >= prefixValues[i]) {
+                    cout << words[i].substr(0,prefixValues[i]) << endl;
+                    if(!preHT[i].insert(stringToInt(words[i].substr(0,prefixValues[i])))) {
+                        cout << "exited "<< prefixValues[i] << endl;
+                        tableSize <<= 1;
+                        assignWords();
+                    }
+                }
+            }
+        }
     }
-    //cerr << "table size " <<tableSize << endl << " max word size " << maxWordSize << endl; 
+    /*for (int i = 0; i < totalPrefixs; ++i)
+        cout << prefixValues[i] << endl;
+    cout << tableSize << endl;*/
 }
 
-void diccDHashing::readInput() {
+void diccDHashing::readInput() {    
     readWords();
     readSoup();
+    cerr << "Hashed Values!" << endl;
 }
 
 void diccDHashing::readWords () {
     cin >> totalWords;
     words = vector<string>(totalWords, "-1");
-    for (int i = 0; i < totalWords; ++i) 
+    for (int i = 0; i < totalWords; ++i) {
         cin >> words[i];
+        maxWordSize = max(maxWordSize, int(words[i].size()));
+    }
+
+    for (int i = 1; i <= totalPrefixs; ++i) {
+        int val = ((maxWordSize-5)/(totalPrefixs)) * (i-1) + 6;
+        prefixValues[i-1] = val - 1;
+        cout << prefixValues[i-1] << endl;
+    }
     assignWords();
 }
 
 void diccDHashing::readSoup () {
     // Read Soup Size
     cin >> soupSize;
-
     // Read Soup Values
     char c;
     soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
