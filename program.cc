@@ -85,14 +85,14 @@ int main(int argc, char* argv[]) {
     }
 
     else if (select == 3) {
-        cerr << "Has seleccionat filtre de bloom" << endl;
+        //cerr << "Has seleccionat filtre de bloom" << endl;
         diccBloomFilter dicc(0.01); // Probabilitat de fals positiu desitjada
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
     }
     else if (select == 4) {
-        cerr << "Has seleccionat double hashing" << endl;
+        //cerr << "Has seleccionat double hashing" << endl;
         diccDHashing dicc;
         // Read the input
         dicc.readInput();
