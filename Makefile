@@ -1,4 +1,4 @@
-OPCIONS = -O2
+OPCIONS = -O2 -std=c++11
 
 all: program
 

@@ -48,6 +48,18 @@ vector<string> readWordsTrie () {
     return words;
 }
 
+set<string> readSubsetTrie() {
+    int subsetWords;
+    cin >> subsetWords;
+    vector<string> subsetDictionary;
+    subsetDictionary = vector<string>(subsetWords, "-1");
+    for (int i = 0; i < subsetWords; ++i) {
+        cin >> subsetDictionary[i];
+    }
+    set<string> P(subsetDictionary.begin(),subsetDictionary.end());
+    return P;
+}
+
 int main(int argc, char* argv[]) {
 
     if (argc != 2) {
@@ -64,8 +76,9 @@ int main(int argc, char* argv[]) {
 
     else if (select == 2) {
         vector<string> dictionary = readWordsTrie();
+        set<string> subset = readSubsetTrie();
         vector<vector<char>> soup = readSoupTrie();
-        trie::main(dictionary,soup);
+        trie::main(dictionary,soup,subset);
     }
 
     else if (select == 3) {
