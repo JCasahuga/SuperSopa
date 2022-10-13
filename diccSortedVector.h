@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include<algorithm> 
 #include <stack>
+#include <set>
+#include <chrono>
 using namespace std;
 
 #ifndef _DICCSORTEDVECTOR_HH_
@@ -30,6 +32,9 @@ class diccSortedVector
 
         int soupSize;
         vector<vector<char>> soup;
+
+        int subsetSize; 
+        vector<string> subset;
         
         void readWords(); 
         void readSoup(); 
@@ -53,7 +58,8 @@ class diccSortedVector
 
         void exploreSoup();
 
-        vector<Pos> bckT(Pos pos, string builtWord, vector<vector<bool>> visited);
+        vector<string> search
+        (Pos pos, string builtWord);
         
         string getWord(int i);
         

@@ -1,6 +1,13 @@
 #include "diccDHashing.h"
-#include "diccSortedVector.h"
 #include "diccBloomFilter.h"
+//#include "generator.cc"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <cstdlib>
+#include <chrono>
+#include "diccTrie.cc"
 #include <iostream>
 using namespace std;
 
@@ -16,6 +23,43 @@ void info() {
             "[4] Double Hashing" << endl;
 }
 
+
+vector<vector<char>> readSoupTrie () {
+    // Read Soup Size
+    int soupSize;
+    cin >> soupSize;
+    vector<vector<char>> soup(soupSize, vector<char>(soupSize));
+
+    // Read Soup Values
+    char c;
+    for (int i = 0; i < soupSize; ++i)
+        for (int j = 0; j < soupSize; ++j)
+            cin >> soup[i][j];
+    return soup;
+}
+
+vector<string> readWordsTrie () {
+    int totalWords;
+    cin >> totalWords;
+    vector<string> words;
+    words = vector<string>(totalWords, "-1");
+    for (int i = 0; i < totalWords; ++i) 
+        cin >> words[i];
+    return words;
+}
+
+set<string> readSubsetTrie() {
+    int subsetWords;
+    cin >> subsetWords;
+    vector<string> subsetDictionary;
+    subsetDictionary = vector<string>(subsetWords, "-1");
+    for (int i = 0; i < subsetWords; ++i) {
+        cin >> subsetDictionary[i];
+    }
+    set<string> P(subsetDictionary.begin(),subsetDictionary.end());
+    return P;
+}
+
 int main(int argc, char* argv[]) {
 
     if (argc != 2) {
@@ -25,33 +69,16 @@ int main(int argc, char* argv[]) {
 
     int select = atoi(argv[1]);
 
+    auto inici = chrono::steady_clock::now();
     if (select == 1) {
-        cerr << "Has seleccionat el vector ordenat de bloom" << endl;
-        
-        diccSortedVector dicc;
-        /* vector<string> words = { "midnight", "badge",  "bag", "worker",   "banner", "wander" };
-        cerr << "Has seleccionat el vector ordenat de bloom" << endl;
-
-        diccSortedVector dicc(words); // Probabilitat de fals positiu desitjada
-
-        dicc.printDicc();
-
-        string a = "midnight";
-        string b = "hello";
-        string x = "midn";
-
-        cout << dicc.exists(a) << endl;
-        cout << dicc.exists(b) << endl;
-        cout << dicc.exists(x) << endl; */
-
-        dicc.readInput();
-        dicc.printDicc();
-        dicc.printSoup();
-        
-        }
+        cerr << "Encara no esta implentat el vector ordenat" << endl;
+    }
 
     else if (select == 2) {
-        cerr << "Encara no esta implentat la trie" << endl;
+        vector<string> dictionary = readWordsTrie();
+        set<string> subset = readSubsetTrie();
+        vector<vector<char>> soup = readSoupTrie();
+        trie::main(dictionary,soup,subset);
     }
 
     else if (select == 3) {
@@ -69,4 +96,6 @@ int main(int argc, char* argv[]) {
         // Explore Soup
         dicc.exploreSoup();
     }
+    auto fi = chrono::steady_clock::now();
+    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 }

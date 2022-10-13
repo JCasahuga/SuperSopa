@@ -77,7 +77,7 @@ void diccBloomFilter::buildFilter() {
 
     for (string word : words) {
         int wordValue = stringToInt(word);
-        cerr << "word value for " << word << " is " << wordValue << endl;
+       // cerr << "word value for " << word << " is " << wordValue << endl;
         for (int hash : hashFunctions) {
             bloomFilter[abs(hash*wordValue)%filterSize] = true;
         }

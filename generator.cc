@@ -149,12 +149,12 @@ void fillSoupEmptySpaces() {
 
 int main()
 {
-    srand(time(NULL));
+    srand(1234);
 
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(20);     // Result is saved in selectedWords var 
+    selectWordSet(300);     // Result is saved in selectedWords var 
     N = 20;                   // Deafult value = 20
     DEBUG = false;            // DEBUG mode
 
@@ -166,12 +166,10 @@ int main()
     for (auto word : selectedWords) if(addWordToSoup(word)) ++placedWords;
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
-
-    cout << dictionary.size() << endl;
+    
     printDictionary();
 
-    // cout << selectedWords.size();
-    // printSelectedWords();
+    printSelectedWords();
 
     cout << N << endl;
     printSoup();
