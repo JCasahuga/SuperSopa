@@ -154,9 +154,15 @@ int main(int argc, char* argv[])
     string word;
     while (cin >> word) dictionary.push_back(word);
     
+<<<<<<< HEAD
     selectWordSet(20);              // Result is saved in selectedWords var 
     N = atoi(argv[1]);              // Deafult value = 20
     DEBUG = false;                  // DEBUG mode
+=======
+    selectWordSet(3);     // Result is saved in selectedWords var 
+    N = 5;                   // Deafult value = 20
+    DEBUG = false;            // DEBUG mode
+>>>>>>> main
 
     //printSelectedWords();
 
