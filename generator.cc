@@ -154,7 +154,7 @@ int main()
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(20);     // Result is saved in selectedWords var 
+    selectWordSet(20);        // Result is saved in selectedWords var 
     N = 20;                   // Deafult value = 20
     DEBUG = false;            // DEBUG mode
 
@@ -169,7 +169,7 @@ int main()
 
     printDictionary();
 
-    // cout << selectedWords.size();
+    cerr << selectedWords.size();
     // printSelectedWords();
 
     cout << N << endl;

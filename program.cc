@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
 
     int select = atoi(argv[1]);
 
-    auto inici = chrono::steady_clock::now();
+    //auto inici = chrono::steady_clock::now();
     if (select == 1) {
         cerr << "Encara no esta implentat el vector ordenat" << endl;
     }
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
 
     else if (select == 3) {
         cerr << "Has seleccionat filtre de bloom" << endl;
-        diccBloomFilter dicc(0.1); // Probabilitat de fals positiu desitjada
+        diccBloomFilter dicc(0.00000001); // Probabilitat de fals positiu desitjada
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
@@ -83,6 +83,6 @@ int main(int argc, char* argv[]) {
         // Explore Soup
         dicc.exploreSoup();
     }
-    auto fi = chrono::steady_clock::now();
-    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
+   // auto fi = chrono::steady_clock::now();
+    //cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 }
