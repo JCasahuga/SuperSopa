@@ -104,8 +104,8 @@ namespace trie {
     int main(vector<string>& D, vector<vector<char>>& soup) {
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
-        //for (auto i: paraulesSenseRepetir) cout << i << endl;
-        //cout << paraulesSenseRepetir.size() << endl;
+        for (auto i: paraulesSenseRepetir) cout << i << endl;
+        cout << paraulesSenseRepetir.size() << endl;
 
         return 0;
     }
