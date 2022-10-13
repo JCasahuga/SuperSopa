@@ -12,7 +12,7 @@ using namespace std;
 hashingTable::hashingTable(){}
 
 // Check if value is Prime
-bool hashingTable::isPrime(const int  n)
+bool hashingTable::isPrime(const int n)
 {
     if (n == 1 || n == 0)
         return false;
@@ -26,7 +26,7 @@ bool hashingTable::isPrime(const int  n)
 }
 
 // Initialize Hash Table
-void hashingTable::doubleHash(int size) {
+void hashingTable::doubleHash(const int size) {
     tableSize = size;
     prime = size - 1;
     while (!isPrime(prime)) --prime;
@@ -34,17 +34,17 @@ void hashingTable::doubleHash(int size) {
 }
 
 // Returns value of h1(s)
-unsigned int hashingTable::hash1(int  s) {
+unsigned int hashingTable::hash1(const int  s) {
     return s%tableSize;
 }
 
 // Returns value of h2(s)
-unsigned int hashingTable::hash2(int  s) {
+unsigned int hashingTable::hash2(const int  s) {
     return prime - (s%prime);
 }
 
 // Inserts Value Into Table If Possible
-bool hashingTable::insert(unsigned int value) {
+bool hashingTable::insert(const unsigned int value) {
     if (value == -1 || value == -2)
         cerr << "Can't be Inserted" << endl;
 
@@ -69,7 +69,7 @@ void hashingTable::printHash() {
 }
 
 // Searches Value in the Table
-bool hashingTable::search(unsigned int value) {
+bool hashingTable::search(const unsigned int value) {
     int hashed = hash1(value);
     int offset = hash2(value);
     int initialPos = hashed;
@@ -91,7 +91,7 @@ bool hashingTable::search(unsigned int value) {
 }
 
 // Erases Value of the Table
-void hashingTable::erase(unsigned int value) {
+void hashingTable::erase(const unsigned int value) {
     if(!search(value))
         return;    
         

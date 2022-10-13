@@ -9,16 +9,16 @@ class hashingTable
         hashingTable();
 
         // Initialize Hash Table
-        void doubleHash(int size);
+        void doubleHash(const int size);
 
         // Inserts Value Into Table If Possible
-        bool insert(unsigned int value);
+        bool insert(const unsigned int value);
 
         // Searches Value in the Table
-        bool search(unsigned int value);
+        bool search(const unsigned int value);
 
         // Erases Value of the Table
-        void erase(unsigned int value);
+        void erase(const unsigned int value);
 
         // Returns true if the Table is Full
         bool isFull();
@@ -27,7 +27,7 @@ class hashingTable
 
         vector<int> hashTable;
         int keysPresent = 0;
-        int tableSize = INT64_C(1) << 2;
+        int tableSize;
         int prime;
 
     private:
@@ -35,8 +35,8 @@ class hashingTable
         bool isPrime(const int n);
 
         // Returns value of h1(s)
-        unsigned int  hash1(int s);
+        unsigned int  hash1(const int s);
 
         // Returns value of h2(s)
-        unsigned int  hash2(int s);
+        unsigned int  hash2(const int s);
 };
