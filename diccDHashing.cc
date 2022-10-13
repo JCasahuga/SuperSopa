@@ -28,16 +28,16 @@ unsigned int diccDHashing::stringToInt(string s) {
 
 // Sends a BFS dor each letter on the soup
 void diccDHashing::exploreSoup() {
-    vector<vector<char>> used = soup;
+    vector<vector<bool>> used = vector<vector<bool>>(soupSize, vector<bool>(soupSize, false));
     string s = "";
-    for (int i = 0; i < soupSize; ++i)
+    for (int i = 0; i < soupSize; ++i) {
         for (int j = 0; j < soupSize; ++j) {
             exploreSoupDeep(s, i, j, used, 1);
-            float val = 100*((i*soupSize)+j) / (soupSize*soupSize);
-            printLoadingBar(val);
+            //float val = 100*((i*soupSize)+j) / (soupSize*soupSize);
+            //printLoadingBar(val);
         }
-        printLoadingBar(100);
-        cout << endl;
+    }
+    //printLoadingBar(100);
     cout << "Total Words Found " << wordsTrobades.size() << endl;
 }
 
@@ -54,9 +54,9 @@ void diccDHashing::printLoadingBar(float val) {
 }
 
 // Explores All Combinations of the Soup
-void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total) {
+void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<bool>>& used, const int total) {
     // Set
-    used[x][y] = -1;
+    used[x][y] = true;
     s.push_back(soup[x][y]);
 
     // Is in the Hash Table?
@@ -65,10 +65,10 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
     if (hT.search(v))
         wordsTrobades.insert(s);
     if (usePrefixPruning) {
-        for (int i = 0; i < totalPrefixs; ++i) {
+        for (int i = 0; i < totalPrefixs - 1; ++i) {
             if (total == prefixValues[i]) {
                 if (!preHT[i].search(v)) {
-                    used[x][y] = soup[x][y];
+                    used[x][y] = false;
                     s.pop_back();
                     return;
                 }
@@ -78,35 +78,33 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
     // Over Maximum Size Word
     if (total > maxWordSize) {
         // Unset
-        used[x][y] = soup[x][y];
+        used[x][y] = false;
         s.pop_back();
         return;
     }
-    //if (s.substr(0,4) == "lila") cout << s << endl;
     // Loops to All Directions
     for (int8_t i = 0; i < 8; ++i) {
         x += offSetsX[i];
         y += offSetsY[i];
         if (min(x, y) >= 0 && max(x, y) < soupSize) {
-            char aux = used[x][y];
-            if (aux != -1) {
-                used[x][y] = -1;
+            if (!used[x][y]) {
+                used[x][y] = true;
                 exploreSoupDeep(s, x, y, used, total+1);
-                used[x][y] = aux;
+                used[x][y] = false;
             }
         }
         x -= offSetsX[i];
         y -= offSetsY[i];
     }
     // Unset
-    used[x][y] = soup[x][y];
+    used[x][y] = false;
     s.pop_back();
 }
 
 // Assigns Words to the Map, if they don't fit, multiply the size by 2
 void diccDHashing::assignWords() {
     hT.doubleHash(tableSize);
-    for (int i = 0; i < totalPrefixs; ++i) preHT[i].doubleHash(tableSize);
+    for (int i = 0; i < totalPrefixs - 1; ++i) preHT[i].doubleHash(tableSize);
 
     for (int i = 0; i < totalWords; ++i) {
         if (!hT.insert(stringToInt(words[i]))) {
@@ -115,7 +113,7 @@ void diccDHashing::assignWords() {
         }
 
         if (usePrefixPruning) {
-            for (int j = 0; j < totalPrefixs; ++j) {
+            for (int j = 0; j < totalPrefixs - 1; ++j) {
                 if (words[i].size() > prefixValues[j]) {
                     if(!preHT[j].insert(stringToInt(words[i].substr(0,prefixValues[j])))) {
                         tableSize <<= 1;
@@ -131,7 +129,6 @@ void diccDHashing::readInput() {
     readWords();
     readSubset();
     readSoup();
-    cerr << "Hashed Values!" << endl;
 }
 
 void diccDHashing::readWords () {
@@ -142,7 +139,9 @@ void diccDHashing::readWords () {
         maxWordSize = max(maxWordSize, int(words[i].size()));
     }
 
-    for (int i = 1; i <= totalPrefixs; ++i) {
+    tableSize = INT64_C(1) << int(log(totalWords));
+    totalPrefixs = maxWordSize / 2;
+    for (int i = 1; i < totalPrefixs; ++i) {
         int val = (maxWordSize/totalPrefixs) * i;
         prefixValues[i-1] = val;
     }
@@ -171,7 +170,6 @@ void diccDHashing::readSoup () {
 }
 
 void diccDHashing::checkSubset() {
-    if (includes(wordsTrobades.begin(), wordsTrobades.end(), subset.begin(), subset.end())) {
+    if (includes(wordsTrobades.begin(), wordsTrobades.end(), subset.begin(), subset.end()))
         cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat la DHashing" << endl;
-    }
 }

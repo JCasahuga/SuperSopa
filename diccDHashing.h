@@ -52,7 +52,7 @@ class diccDHashing
         set<string> wordsTrobades = set<string>();
         set<string> subset = set<string>();
 
-        int totalPrefixs = 3;
+        int totalPrefixs = 9;
         vector<int> prefixValues = vector<int>(10, 0);
         vector<hashingTable> preHT = vector<hashingTable>(10);
         bool usePrefixPruning = true;
@@ -62,7 +62,7 @@ class diccDHashing
         unsigned int stringToInt(string s);
 
         // Explores All Combinations of the Soup
-        void exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<char>>& used, const int total);
+        void exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<bool>>& used, const int total);
 
 };
 
