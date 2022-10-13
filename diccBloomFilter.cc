@@ -64,15 +64,15 @@ void diccBloomFilter::buildFilter() {
     c = totalWords;
     filterSize = -(c*log(probability))/(pow(log(2), 2));
     k = -log2(probability);
+    
     cout << "Filter size: " << filterSize << endl
          << "nº of hash functions: " << k << endl
          << "nº of words " << c << endl << endl;
 
     bloomFilter = vector<bool>(filterSize, false);
-
-    prefixFilterSize = min(filterSize*totalWords, int(1e9));
+    prefixFilterSize = -(c*10*log(probability))/(pow(log(2), 2));
     bloomFilterPrefix = vector<bool>(prefixFilterSize, false);
-    
+
     hashFunctions.clear();
     for (int i = 0; i < k; ++i) {
         hashFunctions.push_back(randomNumber());
@@ -93,9 +93,7 @@ void diccBloomFilter::buildFilter() {
             bloomFilter[abs(hash*wordValue)%filterSize] = true;
         }
         if (withPrefix) {
-            for (int hash : hashFunctionsPrefix) {
-                bloomFilterPrefix[abs(hash*wordValue)%prefixFilterSize] = true;
-            }
+            addWordPrefix(word);
             string s;
             for (int i = 0; i < word.size(); ++i) {
                s.push_back(word[i]);
@@ -107,6 +105,8 @@ void diccBloomFilter::buildFilter() {
         if(word.size() > maxWordSize) maxWordSize = word.size();
         if(word.size() < minWordSize) minWordSize = word.size();
     }
+
+
 
     //cerr << "prefix size: " << prefixs.size() << endl;
     if (withPrefix) for (string p : prefixs) addWordPrefix(p);

@@ -182,7 +182,7 @@ vector<string> diccSortedVector::search(Pos pos, string builtWord)
             //We have found the word, delete it from the dictionary
             string paraula = getDicc(x);
             bool borrat = deleteWord(x);
-            if(!borrat) cout <<"Error, s'ha trobat una paraula que no es pot borrar: "<<  paraula <<endl; 
+            if(!borrat) cerr <<"Error, s'ha trobat una paraula que no es pot borrar: "<<  paraula <<endl; 
             wordsFound.push_back(paraula);
         }if(x == -2 || x >= 0 ){
             //The word has not been found but it is a prefix of a word in the dictionary 
@@ -227,9 +227,9 @@ void diccSortedVector::printPos(Pos p){
 
 void diccSortedVector::readInput() {
     readWords();
-    cout << "Words Read" << endl; 
+    //cout << "Words Read" << endl; 
     readSoup();
-    cout << "Soup Read" << endl; 
+    //cout << "Soup Read" << endl; 
     
 }
 
@@ -239,7 +239,7 @@ void diccSortedVector::readWords () {
     for (int i = 0; i < totalWords; ++i) 
         cin >> words[i];
     sort(words.begin(),words.end());
-    cout << "Words Read and sorted" << endl;
+    //cout << "Words Read and sorted" << endl;
 }
 
 
