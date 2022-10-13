@@ -1,5 +1,6 @@
 #include "diccDHashing.h"
 #include "diccBloomFilter.h"
+#include "diccSortedVector.h"
 //#include "generator.cc"
 #include <iostream>
 #include <vector>
@@ -71,7 +72,9 @@ int main(int argc, char* argv[]) {
 
     auto inici = chrono::steady_clock::now();
     if (select == 1) {
-        cerr << "Encara no esta implentat el vector ordenat" << endl;
+        diccSortedVector dicc;
+        dicc.readInput();
+        dicc.exploreSoup();
     }
 
     else if (select == 2) {
