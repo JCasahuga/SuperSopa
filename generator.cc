@@ -166,11 +166,10 @@ int main()
     for (auto word : selectedWords) if(addWordToSoup(word)) ++placedWords;
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
-
+    
     printDictionary();
 
-     //cerr << selectedWords.size();
-    // printSelectedWords();
+    printSelectedWords();
 
     cout << N << endl;
     printSoup();
