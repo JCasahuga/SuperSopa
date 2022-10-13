@@ -112,4 +112,3 @@ void hashingTable::erase(const unsigned int value) {
 bool hashingTable::isFull() {
     return keysPresent == tableSize;
 }
-

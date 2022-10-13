@@ -39,11 +39,11 @@ void diccDHashing::exploreSoup() {
             }
         }
     }
-    if (printProgress) printLoadingBar(100);
+    if(printProgress) printLoadingBar(100);
     cout << "Total Words Found " << wordsTrobades.size() << endl;
 }
 
-void diccDHashing::printLoadingBar(float val) {
+void diccDHashing::printLoadingBar(const float val) {
     int valAux = val / 10;
     cout << "[";
     for (int i = 0; i < valAux & i < 5; ++i) cout << "=";
@@ -64,6 +64,16 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
     // Is in the Hash Table?
     const int v = stringToInt(s);
     
+    if (hT.search(v))
+        wordsTrobades.insert(s);
+
+    // Over Maximum Size Word
+    if (total > maxWordSize) {
+        // Unset
+        used[x][y] = false;
+        s.pop_back();
+        return;
+    }
     
     if (usePrefixPruning) {
         for (uint8_t i = 0; i < totalPrefixs - 1; ++i) {
@@ -76,18 +86,7 @@ void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<
             }
         }
     }
-
-    if (hT.search(v))
-        wordsTrobades.insert(s);
         
-    // Over Maximum Size Word
-    if (total > maxWordSize) {
-        // Unset
-        used[x][y] = false;
-        s.pop_back();
-        return;
-    }
-    
     // Loops to All Directions
     for (uint8_t i = 0; i < 8; ++i) {
         x += offSetsX[i];
@@ -148,14 +147,14 @@ void diccDHashing::readWords () {
         maxWordSize = max(maxWordSize, int(words[i].size()));
     }
 
-    tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 1);
+    tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 2);
 
     totalPrefixs = maxWordSize / 2;
     int8_t interval = (maxWordSize/totalPrefixs);
     for (int8_t i = 1; i < totalPrefixs; ++i) {
         const uint8_t val = interval * i;
         prefixValues[i-1] = val;
-        const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 2;
+        const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 3;
         tSPrefix[i-1] = INT64_C(1) << v;
     }
     assignWords();
