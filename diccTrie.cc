@@ -115,9 +115,8 @@ namespace trie {
 
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
-        for (auto i: paraulesSenseRepetir) cout << i << endl;
+        //for (auto i: paraulesSenseRepetir) cout << i << endl;
         cout << paraulesSenseRepetir.size() << endl;
-
         esSubconjunt(subconjunt,paraulesSenseRepetir);
 
         return 0;

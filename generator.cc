@@ -154,8 +154,8 @@ int main()
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(300);     // Result is saved in selectedWords var 
-    N = 20;                   // Deafult value = 20
+    selectWordSet(3);     // Result is saved in selectedWords var 
+    N = 5;                   // Deafult value = 20
     DEBUG = false;            // DEBUG mode
 
     //printSelectedWords();

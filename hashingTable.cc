@@ -12,12 +12,12 @@ using namespace std;
 hashingTable::hashingTable(){}
 
 // Check if value is Prime
-bool hashingTable::isPrime(const long int  n)
+bool hashingTable::isPrime(const int  n)
 {
     if (n == 1 || n == 0)
         return false;
 
-    long int s = sqrt(n);
+    int s = sqrt(n);
     for (int i = 2; i < s; i++) {
         if (n % i == 0)
             return false;
@@ -26,32 +26,31 @@ bool hashingTable::isPrime(const long int  n)
 }
 
 // Initialize Hash Table
-void hashingTable::doubleHash(long int size) {
+void hashingTable::doubleHash(int size) {
     tableSize = size;
-    
     prime = size - 1;
     while (!isPrime(prime)) --prime;
     hashTable = vector<int>(prime, -1);
 }
 
 // Returns value of h1(s)
-unsigned long int hashingTable::hash1(long int  s) {
+unsigned int hashingTable::hash1(int  s) {
     return s%tableSize;
 }
 
 // Returns value of h2(s)
-unsigned long int hashingTable::hash2(long int  s) {
+unsigned int hashingTable::hash2(int  s) {
     return prime - (s%prime);
 }
 
 // Inserts Value Into Table If Possible
-bool hashingTable::insert(long int value) {
+bool hashingTable::insert(unsigned int value) {
     if (value == -1 || value == -2)
         cerr << "Can't be Inserted" << endl;
 
-    long int hashed = hash1(value);
-    long int offset = hash2(value);
-    long int initialPos = hashed;
+    int hashed = hash1(value);
+    int offset = hash2(value);
+    int initialPos = hashed;
     bool firstItr = true;
 
     while (hashTable[hashed] != -1) {
@@ -60,18 +59,22 @@ bool hashingTable::insert(long int value) {
         hashed = (hashed+offset) % tableSize;
         firstItr = false;
     }
-
     hashTable[hashed] = value;
     ++keysPresent;
     return true;
 }
 
+void hashingTable::printHash() {
+    for (int i = 0; i < tableSize; ++i) cout << hashTable[i] << endl;
+}
+
 // Searches Value in the Table
-bool hashingTable::search(long int value) {
-    long int hashed = hash1(value);
-    long int offset = hash2(value);
-    long int initialPos = hashed;
+bool hashingTable::search(unsigned int value) {
+    int hashed = hash1(value);
+    int offset = hash2(value);
+    int initialPos = hashed;
     bool firstItr = true;
+
     while(true) {
         if(hashTable[hashed] == -1)                  
             break;
@@ -88,12 +91,12 @@ bool hashingTable::search(long int value) {
 }
 
 // Erases Value of the Table
-void hashingTable::erase(long int value) {
+void hashingTable::erase(unsigned int value) {
     if(!search(value))
         return;    
         
-    long int  hashed = hash1(value);
-    long int  offset = hash2(value);
+    int  hashed = hash1(value);
+    int  offset = hash2(value);
 
     while(hashTable[hashed] != -1) {
         if(hashTable[hashed] == value){
