@@ -30,8 +30,8 @@ unsigned int diccDHashing::stringToInt(const string& s) {
 void diccDHashing::exploreSoup() {
     vector<vector<bool>> used = vector<vector<bool>>(soupSize, vector<bool>(soupSize, false));
     string s = "";
-    for (uint8_t i = 0; i < soupSize; ++i) {
-        for (uint8_t j = 0; j < soupSize; ++j) {
+    for (uint16_t i = 0; i < soupSize; ++i) {
+        for (uint16_t j = 0; j < soupSize; ++j) {
             exploreSoupDeep(s, i, j, used, 1);
             if (printProgress) {
                 float val = 100*((i*soupSize)+j) / (soupSize*soupSize);
@@ -56,7 +56,7 @@ void diccDHashing::printLoadingBar(const float val) {
 }
 
 // Explores All Combinations of the Soup
-void diccDHashing::exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<bool>>& used, const int total) {
+void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const int total) {
     // Set
     used[x][y] = true;
     s.push_back(soup[x][y]);
@@ -114,6 +114,7 @@ void diccDHashing::assignWords() {
         
     for (int32_t i = 0; i < totalWords; ++i) {
         if (!hT.insert(stringToInt(words[i]))) {
+            cout << "BIGGER" << endl;
             tableSize <<= 1;
             assignWords();
         }
@@ -122,6 +123,7 @@ void diccDHashing::assignWords() {
             for (int8_t j = 0; j < totalPrefixs - 1; ++j) {
                 if (words[i].size() > prefixValues[j]) {
                     if(!preHT[j].insert(stringToInt(words[i].substr(0,prefixValues[j])))) {
+                        cout << "bigger" << endl;
                         tSPrefix[j] <<= 1;
                         assignWords();
                     }
@@ -176,8 +178,8 @@ void diccDHashing::readSoup () {
     // Read Soup Values
     char c;
     soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
-    for (uint8_t i = 0; i < soupSize; ++i)
-        for (uint8_t j = 0; j < soupSize; ++j)
+    for (uint16_t i = 0; i < soupSize; ++i)
+        for (uint16_t j = 0; j < soupSize; ++j)
             cin >> soup[i][j];
 }
 

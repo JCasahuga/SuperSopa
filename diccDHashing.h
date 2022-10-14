@@ -67,7 +67,7 @@ class diccDHashing
         unsigned int stringToInt(const string& s);
 
         // Explores All Combinations of the Soup
-        void exploreSoupDeep(string& s, int8_t x, int8_t y, vector<vector<bool>>& used, const int total);
+        void exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const int total);
 };
 
 #endif
