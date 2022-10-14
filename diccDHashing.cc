@@ -152,7 +152,7 @@ void diccDHashing::readWords () {
 
     totalPrefixs = (maxWordSize - minWordSize)/ 2;
     for (int8_t i = 0; i < totalPrefixs; ++i) {
-        const uint8_t val = 2 * i + min(minWordSize - minWordSize%2, 2);
+        const uint8_t val = i + 2;
         prefixValues[i] = val;
         const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 3;
         tSPrefix[i] = INT64_C(1) << v;
