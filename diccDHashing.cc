@@ -142,7 +142,7 @@ void diccDHashing::readWords () {
     words = vector<string>(totalWords, "-1");
     for (int32_t i = 0; i < totalWords; ++i) {
         cin >> words[i];
-        for (int8_t j = 0; j <= words[i].size(); j+=2)
+        for (int8_t j = 0; j <= words[i].size(); j++)
             ++totalWordsLenght[j];
         maxWordSize = max(maxWordSize, int(words[i].size()));
         minWordSize = min(minWordSize, int(words[i].size()));
@@ -150,9 +150,9 @@ void diccDHashing::readWords () {
 
     tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 2);
 
-    totalPrefixs = (maxWordSize - minWordSize)/ 2;
+    totalPrefixs = maxWordSize - 2;
     for (int8_t i = 0; i < totalPrefixs; ++i) {
-        const uint8_t val = 2 * i + min(minWordSize - minWordSize%2, 2);
+        const uint8_t val = i + 2;
         prefixValues[i] = val;
         const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 3;
         tSPrefix[i] = INT64_C(1) << v;
