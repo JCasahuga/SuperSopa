@@ -150,7 +150,7 @@ void diccDHashing::readWords () {
 
     tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 2);
 
-    totalPrefixs = (maxWordSize - minWordSize)/ 2;
+    totalPrefixs = maxWordSize - 2;
     for (int8_t i = 0; i < totalPrefixs; ++i) {
         const uint8_t val = i + 2;
         prefixValues[i] = val;
