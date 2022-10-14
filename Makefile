@@ -1,6 +1,6 @@
 OPCIONS = -O2 -std=c++11
 
-all: program
+all: program generator
 
 program: program.o hashingTable.o  diccDHashing.o diccBloomFilter.o diccSortedVector.o
 	g++ $(OPCIONS) -o program.x hashingTable.o  diccDHashing.o diccBloomFilter.o diccSortedVector.o program.o

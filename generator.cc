@@ -163,7 +163,11 @@ int main(int argc, char* argv[])
     soup = Sopa(N, Files(N, '.'));
 
     int placedWords = 0;
-    for (auto word : selectedWords) if(addWordToSoup(word)) ++placedWords;
+    for (auto word : selectedWords) 
+    {
+        if(addWordToSoup(word)) ++placedWords;
+        cerr << "Placed words: " << placedWords << " / " << selectedWords.size() << endl;
+    }
     cerr << "The placed words are " << placedWords << " out of " << selectedWords.size() << endl;
     fillSoupEmptySpaces();
     

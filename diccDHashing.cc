@@ -131,6 +131,7 @@ void diccDHashing::assignWords() {
             }
         }
     }
+    cout << "hashed" << endl;
 }
 
 void diccDHashing::readInput() {
