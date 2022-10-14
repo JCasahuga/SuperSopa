@@ -61,9 +61,6 @@ void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vecto
     used[x][y] = true;
     s.push_back(soup[x][y]);
 
-    // Is in the Hash Table?
-    const int v = stringToInt(s);
-    
     // Over Maximum Size Word
     if (total >= maxWordSize) {
         // Unset
@@ -71,7 +68,10 @@ void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vecto
         s.pop_back();
         return;
     }
-
+    
+    // Is in the Hash Table?
+    const int v = stringToInt(s);
+    
     if (total >= minWordSize && hT.search(v))
         wordsTrobades.insert(s);
     
