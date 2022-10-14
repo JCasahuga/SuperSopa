@@ -8,6 +8,9 @@
         "cstdlib": "cpp",
         "algorithm": "cpp",
         "functional": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "streambuf": "cpp"
     }
 }

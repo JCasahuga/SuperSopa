@@ -18,10 +18,10 @@ using namespace std;
 #define MAYBE -2;
 
 //Helper functions and typedef to explore the soup
-typedef struct{
+struct Pos{
     int x;
     int y;
-} Pos;
+};
 
 
 class diccSortedVector
@@ -35,18 +35,21 @@ class diccSortedVector
 
         int subsetSize; 
         vector<string> subset;
+
+        bool usePrefix = true;
+        vector<string> prefixs;
+        int maxWordSize;
         
         void readWords(); 
         void readSoup(); 
         int binarySearch(string &word, int low, int high, bool prefix);
-
 
     public:
         diccSortedVector();
 
         diccSortedVector(vector<string> words);
 
-        int exists(string &word);
+        bool exists(string &word);
 
         void printDicc();
 
@@ -58,8 +61,7 @@ class diccSortedVector
 
         void exploreSoup();
 
-        vector<string> search
-        (Pos pos, string builtWord);
+        void search(Pos pos, string& builtWord, vector<vector<bool>>& used, set<string>& foundWords, int& total);
         
         string getWord(int i);
         
@@ -73,5 +75,7 @@ class diccSortedVector
 
         string getDicc(int i);
         char getSoup(Pos pos);
+
+        bool isInPrefix(string word);
 };
 #endif
