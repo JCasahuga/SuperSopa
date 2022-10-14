@@ -64,19 +64,19 @@ void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vecto
     // Is in the Hash Table?
     const int v = stringToInt(s);
     
-    if (hT.search(v))
-        wordsTrobades.insert(s);
-
     // Over Maximum Size Word
-    if (total > maxWordSize) {
+    if (total >= maxWordSize) {
         // Unset
         used[x][y] = false;
         s.pop_back();
         return;
     }
+
+    if (total >= minWordSize && hT.search(v))
+        wordsTrobades.insert(s);
     
     if (usePrefixPruning) {
-        for (uint8_t i = 0; i < totalPrefixs - 1; ++i) {
+        for (uint8_t i = 0; i < totalPrefixs; ++i) {
             if (total == prefixValues[i]) {
                 if (!preHT[i].search(v)) {
                     used[x][y] = false;
@@ -109,21 +109,19 @@ void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vecto
 // Assigns Words to the Map, if they don't fit, multiply the size by 2
 void diccDHashing::assignWords() {
     hT.doubleHash(tableSize);
-    for (int32_t i = 0; i < totalPrefixs - 1; ++i)
+    for (int32_t i = 0; i < totalPrefixs; ++i)
         preHT[i].doubleHash(tSPrefix[i]);
         
     for (int32_t i = 0; i < totalWords; ++i) {
         if (!hT.insert(stringToInt(words[i]))) {
-            cout << "BIGGER" << endl;
             tableSize <<= 1;
             assignWords();
         }
 
         if (usePrefixPruning) {
-            for (int8_t j = 0; j < totalPrefixs - 1; ++j) {
+            for (int8_t j = 0; j < totalPrefixs; ++j) {
                 if (words[i].size() > prefixValues[j]) {
                     if(!preHT[j].insert(stringToInt(words[i].substr(0,prefixValues[j])))) {
-                        cout << "bigger" << endl;
                         tSPrefix[j] <<= 1;
                         assignWords();
                     }
@@ -131,7 +129,6 @@ void diccDHashing::assignWords() {
             }
         }
     }
-    cout << "hashed" << endl;
 }
 
 void diccDHashing::readInput() {
@@ -148,17 +145,17 @@ void diccDHashing::readWords () {
         for (int8_t j = 0; j <= words[i].size(); j+=2)
             ++totalWordsLenght[j];
         maxWordSize = max(maxWordSize, int(words[i].size()));
+        minWordSize = min(minWordSize, int(words[i].size()));
     }
 
     tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 2);
 
-    totalPrefixs = maxWordSize / 2;
-    int8_t interval = (maxWordSize/totalPrefixs);
-    for (int8_t i = 1; i < totalPrefixs; ++i) {
-        const uint8_t val = interval * i;
-        prefixValues[i-1] = val;
+    totalPrefixs = (maxWordSize - minWordSize)/ 2;
+    for (int8_t i = 0; i < totalPrefixs; ++i) {
+        const uint8_t val = 2 * i + min(minWordSize - minWordSize%2, 2);
+        prefixValues[i] = val;
         const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 3;
-        tSPrefix[i-1] = INT64_C(1) << v;
+        tSPrefix[i] = INT64_C(1) << v;
     }
     assignWords();
 }

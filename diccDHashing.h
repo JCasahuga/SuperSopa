@@ -35,7 +35,7 @@ class diccDHashing
         // Hash Table & Parameters
         hashingTable hT;
         int tableSize = INT64_C(1) << 2;
-        vector<int> totalWordsLenght = vector<int>(20,0);
+        vector<int> totalWordsLenght = vector<int>(30,0);
         
         // Soup
         int soupSize;
@@ -47,16 +47,16 @@ class diccDHashing
 
         // Words
         int maxWordSize = 0;
-        int totalWords;
-        int totalFound = 0;
+        int minWordSize = 200;
+        int16_t totalWords;
         vector<string> words;
         set<string> wordsTrobades = set<string>();
         set<string> subset = set<string>();
 
-        int totalPrefixs;
-        vector<int> tSPrefix = vector<int>(20,0);
-        vector<int8_t> prefixValues = vector<int8_t>(20, 0);
-        vector<hashingTable> preHT = vector<hashingTable>(20);
+        int8_t totalPrefixs;
+        vector<int> tSPrefix = vector<int>(30,0);
+        vector<int8_t> prefixValues = vector<int8_t>(30, 0);
+        vector<hashingTable> preHT = vector<hashingTable>(30);
 
         // Settings
         bool usePrefixPruning = true;
