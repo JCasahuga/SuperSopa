@@ -23,7 +23,8 @@ def main():
     numberOfReps = 1
     print(path)
     files = [f for f in listdir(path) if isfile(join(path, f))]
-    for f in files:
+    for i in range (files):
+        f = files[i]
         print("Testing input: " + f)
         
         average = 0
