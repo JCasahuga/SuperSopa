@@ -77,7 +77,7 @@ bool hashingTable::search(const unsigned int value) {
 
     while(true) {
         if(hashTable[hashed] == -1)                  
-            break;
+            return false;
         else if(hashTable[hashed] == value)
             return true;
         else if(hashed == initialPos && !firstItr)    // Stop search if one complete traversal of hash table is completed.

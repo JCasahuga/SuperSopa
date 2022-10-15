@@ -48,6 +48,7 @@ class diccDHashing
         // Words
         int maxWordSize = 0;
         int minWordSize = 200;
+        int totalWordsPrefixs = 0;
         int16_t totalWords;
         vector<string> words;
         set<string> wordsTrobades = set<string>();
