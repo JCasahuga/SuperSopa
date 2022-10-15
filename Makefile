@@ -21,7 +21,7 @@ diccSortedVector.o: diccSortedVector.cc diccSortedVector.h
 	g++ $(OPCIONS) -c diccSortedVector.cc
 
 generator: generator.cc
-	g++ generator.cc -O2 -o generator.x
+	g++ $(OPCIONS) generator.cc -O2 -o generator.x
 
 clean:
 	rm *.o *.x
