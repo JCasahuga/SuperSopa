@@ -20,7 +20,7 @@ def get_average(number, path, file):
 def main():
     os.system("make -j")
     path = os.getcwd() + "/JocsDeProva/"
-    numberOfReps = 1
+    numberOfReps = 5
     print(path)
     files = [f for f in listdir(path) if isfile(join(path, f))]
     for i in range (len(files)):
@@ -28,9 +28,9 @@ def main():
         print("Testing input: " + f)
         
         average = 0
-        for i in range (0, numberOfReps):
-            average += (get_average("1", path, f)/numberOfReps)
-        print("Sorted vector time:  " + str(average) + " ms")
+        #for i in range (0, numberOfReps):
+        #    average += (get_average("1", path, f)/numberOfReps)
+        #print("Sorted vector time:  " + str(average) + " ms")
 
         average = 0
         for i in range (0, numberOfReps):

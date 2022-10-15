@@ -81,9 +81,9 @@ int main(int argc, char* argv[]) {
         vector<string> dictionary = readWordsTrie();
         set<string> subset = readSubset();
         vector<vector<char>> soup = readSoupTrie();
-        cerr << "Com a mínim llegeix" << endl;
+        //cerr << "Com a mínim llegeix" << endl;
         trie::main(dictionary,soup,subset);
-        cerr << "executaaa" << endl;
+       // cerr << "executaaa" << endl;
     }
 
     else if (select == 3) {

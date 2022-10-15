@@ -23,27 +23,33 @@ vector<pair<int, int>> directions = {{-1, 0}, {+1, 0}, {0, -1}, {0, +1}, {-1, -1
 ///////////////////////// FUNCIONS AUXILIARS //////////////////////////
 
 void selectWordSet(int numberOfWords) {
-    if (numberOfWords >= dictionary.size()) {
-        if (DEBUG) cerr << "There are not enough words in the dictionary (" << numberOfWords << " - desired, " << dictionary.size() << " - size)" << endl;
-        if (DEBUG) cerr << "Iserting all of them directly to the selection set" << endl;
-        for (string word : dictionary) selectedWords.insert(word);
-        return;
-    }
+    // if (numberOfWords >= dictionary.size()) {
+    //     if (DEBUG) cerr << "There are not enough words in the dictionary (" << numberOfWords << " - desired, " << dictionary.size() << " - size)" << endl;
+    //     if (DEBUG) cerr << "Iserting all of them directly to the selection set" << endl;
+    //     for (string word : dictionary) selectedWords.insert(word);
+    //     return;
+    // }
 
-    int selection = rand()%dictionary.size();
-    int reduceRepeatedWord = rand()%dictionary.size();
+    // int selection = rand()%dictionary.size();
+    // int reduceRepeatedWord = rand()%dictionary.size();
 
-    while (selectedWords.size() < numberOfWords) {
+    // while (selectedWords.size() < numberOfWords) {
         
-        if(not selectedWords.insert(dictionary[selection]).second) {
-            if (DEBUG) cerr << "Didnt insert" << endl;
-            if (reduceRepeatedWord < 1) reduceRepeatedWord = rand()%10;
-        }
-        else reduceRepeatedWord = rand()%dictionary.size();
+    //     if(not selectedWords.insert(dictionary[selection]).second) {
+    //         if (DEBUG) cerr << "Didnt insert" << endl;
+    //         if (reduceRepeatedWord < 1) reduceRepeatedWord = rand()%10;
+    //     }
+    //     else reduceRepeatedWord = rand()%dictionary.size();
 
-        selection += rand()%reduceRepeatedWord;
-        selection %= dictionary.size();
-        if (DEBUG) cerr << "Inserting " << selection << " " << dictionary[selection] << endl;
+    //     selection += rand()%reduceRepeatedWord;
+    //     selection %= dictionary.size();
+    //     if (DEBUG) cerr << "Inserting " << selection << " " << dictionary[selection] << endl;
+    // }
+    vector<string> copyOfDic = dictionary;
+    random_shuffle(copyOfDic.begin(), copyOfDic.end());
+    //random_shuffle(copyOfDic.begin(), copyOfDic.end());
+    for (int i = 0; selectedWords.size() < numberOfWords/*and i < numberOfWords*/; ++i) {
+        selectedWords.insert(copyOfDic[i]);
     }
 }
 
@@ -149,7 +155,7 @@ void fillSoupEmptySpaces() {
 
 int main(int argc, char* argv[])
 {
-    srand(1234);
+    srand(44538827);
 
     string word;
     while (cin >> word) dictionary.push_back(word);
