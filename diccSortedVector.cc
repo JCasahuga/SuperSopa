@@ -112,14 +112,14 @@ void diccSortedVector::exploreSoup () {
     auto fi = chrono::steady_clock::now();
     
     //Printing of the soup words found
-    // cout << "Number of words found:  " << count << endl;
+    cout << "Number of words found:  " << count << endl;
 
-    // cout << "Out of the subset, words not found: "<<endl; 
-    // for(int i = 0 ; i < subset.size(); i++){
-    //     if(foundWords.find(subset[i]) == foundWords.end()){
-    //         cout << subset[i] << endl;
-    //     }
-    // }
+    cout << "Out of the subset, words not found: "<<endl; 
+    for(int i = 0 ; i < subset.size(); i++){
+        if(foundWords.find(subset[i]) == foundWords.end()){
+            cout << subset[i] << endl;
+        }
+    }
     cout << "Temps: " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
 
 }

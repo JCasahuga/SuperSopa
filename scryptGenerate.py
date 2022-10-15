@@ -4,8 +4,10 @@ import os
 
 def main():
     print("Script generador de inputs! :)")
-    arraySoupSize = [10, 25, 50, 75, 100, 150, 200, 250, 500, 1000, 2500]
-    arrayWords    = [16, 32, 64, 128, 128, 128, 128, 128, 256, 256, 256]
+    #arraySoupSize = [10, 25, 50, 75, 100, 150, 200, 250, 500, 1000, 2500]
+    #arrayWords    = [16, 32, 64, 128, 128, 128, 128, 128, 256, 256, 256]
+    arraySoupSize  = [300, 300, 300, 300, 300, 300, 300, 300]
+    arrayWords     = [10,  50,  100,  300, 500, 750, 1000, 2500]
     for i in range (len(arraySoupSize)):
         outname = "JocsDeProva/balena_"+str(arraySoupSize[i])+"_"+str(arrayWords[i])+".inp"
         print("generating: " + outname)

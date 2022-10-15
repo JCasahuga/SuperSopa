@@ -56,6 +56,7 @@ bool esFora(int i, int j, vector<vector<char>>& taulell) {
 //LI PASSEM A QUIN NODE ESTEM EN EL TRIE PERQUÈ SAPIGA CAP A ON SEGUIR I
 // QUINS CARÀCTERS HEM VIST I LI PASSEM LA PARAULA PER ANAR CONSTRUINT-LA
 void backtracking(NodeTrie* arrel, int i, int j, string paraula, vector<vector<char>>& taulell, set<string>& paraules) {
+    //cerr << "checking " << paraula << endl;
     if (esFora(i,j,taulell) or taulell[i][j] == ' ') return; //si anem fora de bounds o si tenim un caràcter que no és un fill d'un node a la trie
 
     if(arrel->node[taulell[i][j]-'a'] != nullptr) { //actualitzem el node i sabem que aquell node existeix i actualitzem la paraula
@@ -86,12 +87,19 @@ void backtracking(NodeTrie* arrel, int i, int j, string paraula, vector<vector<c
 
 /* La funció ens ajuda a cercar les paraules del D que es troben a la SuperSopa */
 set<string> cercaParaules(vector<string>& P, vector<vector<char>>& taulell) {
+    cerr << "abans" << endl;
     Trie t(P); //CREEEM EL TRIE AMB EL SUBCONJUNT P DE PARAULES
+    cerr << "mmmmmmmmm" << endl;
     NodeTrie* arrel = t.getArrel(); //OBTENIM EL NODE ARREL DEL TRIE
+    cerr << "arreeell" << endl;
     set<string> paraules; //CONJUNT RESULTANT DE PARAULES QUE SÓN RESULTAT I PER TANT QUE ES TROBEN AL
+    cerr << "AQUI" << endl;
+    string paraula = ""; //farem un DFS per cada casella del taulell, li passem l'arrel del Trie i la paraula buida
     for (int i = 0; i < taulell.size(); ++i) {
+        //cerr << "iteracio i " << i << endl;
         for (int j = 0; j < taulell[0].size(); ++j) {
-            string paraula = ""; //farem un DFS per cada casella del taulell, li passem l'arrel del Trie i la paraula buida
+            //cerr << "iteracio j " << j << endl;
+            cerr << "peta a la lletra " << taulell[i][j] << endl;
             backtracking(arrel, i, j, paraula, taulell, paraules);
         }
     }
@@ -112,9 +120,9 @@ bool esSubconjunt(set<string>& P, set<string>& paraulesTrobades) {
 
 namespace trie {
     int main(vector<string>& D, vector<vector<char>>& soup, set<string>& subconjunt) {
-
+        cerr << "Sad" << endl;
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
-
+        cerr << "Happy" << endl;
         //for (auto i: paraulesSenseRepetir) cout << i << endl;
         cout << paraulesSenseRepetir.size() << endl;
         esSubconjunt(subconjunt,paraulesSenseRepetir);
