@@ -1,0 +1,21 @@
+generating: JocsDeProva/balena_10_500.inp
+The placed words are 44 out of 500
+generating: JocsDeProva/balena_25_500.inp
+The placed words are 214 out of 500
+generating: JocsDeProva/balena_50_500.inp
+The placed words are 472 out of 500
+generating: JocsDeProva/balena_75_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_100_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_150_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_200_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_250_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_500_500.inp
+The placed words are 500 out of 500
+generating: JocsDeProva/balena_1000_500.inp
+The placed words are 500 out of 500
+
