@@ -6,6 +6,7 @@ using namespace std;
 class hashingTable
 {
     public:
+        // Constructor
         hashingTable();
 
         // Initialize Hash Table
@@ -17,16 +18,7 @@ class hashingTable
         // Searches Value in the Table
         bool search(const unsigned int value);
 
-        // Erases Value of the Table
-        void erase(const unsigned int value);
-
-        // Returns true if the Table is Full
-        bool isFull();
-
-        void printHash();
-
         vector<int> hashTable;
-        int keysPresent = 0;
         int tableSize;
         int prime;
 

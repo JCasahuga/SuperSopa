@@ -9,11 +9,10 @@ using namespace std;
 // En Aquest Algoritme Treballarem Els Caracters Com Enters
 // Per Tal de Indexar-los En La Taula
 
-//Constructors
-
+//Constructor
 diccDHashing::diccDHashing(){}
 
-// Hash the string as Int so Double Hashing is possible
+// Hash the string as Int so Double Hashing if possible
 unsigned int diccDHashing::stringToInt(const string& s) {
     const int8_t p = 31; // Aprop  del numero de caracters
     const uint32_t m = INT64_C(1) << (sizeof(int)*8 - 1);
@@ -26,7 +25,7 @@ unsigned int diccDHashing::stringToInt(const string& s) {
     return hash_value;
 }
 
-// Sends a BFS dor each letter on the soup
+// Explores All Combinations of the Soup
 void diccDHashing::exploreSoup() {
     vector<vector<bool>> used = vector<vector<bool>>(soupSize, vector<bool>(soupSize, false));
     string s = "";
@@ -43,6 +42,59 @@ void diccDHashing::exploreSoup() {
     cout << "Total Words Found " << wordsTrobades.size() << endl;
 }
 
+// Reads Words
+void diccDHashing::readWords () {
+    cin >> totalWords;
+    words = vector<string>(totalWords);
+    totalWordsLenght = vector<int>(25, 0);
+
+    for (int32_t i = 0; i < totalWords; ++i) {
+        cin >> words[i];
+        for (int8_t j = 0; j <= words[i].size(); j++)
+            ++totalWordsLenght[j];
+        maxWordSize = max(maxWordSize, int(words[i].size()));
+        minWordSize = min(minWordSize, int(words[i].size()));
+    }
+
+    tableSize = totalWords << 4;
+
+    totalPrefixs = maxWordSize - 2;
+    preHT = vector<hashingTable>(totalPrefixs);
+    tSPrefix = vector<int>(totalPrefixs);
+    prefixSizes = vector<int8_t>(totalPrefixs);
+
+    for (int8_t i = 0; i < totalPrefixs; ++i) {
+        const uint8_t val = i + 2;
+        prefixSizes[i] = val;
+        tSPrefix[i] = totalWordsLenght[val] << 4;
+    }
+    assignWords();
+}
+
+// Reads Subset
+void diccDHashing::readSubset() {
+    int subsetWords;
+    cin >> subsetWords;
+    for (int32_t i = 0; i < subsetWords; ++i) {
+        string w;
+        cin >> w;
+        subset.insert(w);
+    }
+}
+
+// Read Soup
+void diccDHashing::readSoup () {
+    // Read Soup Size
+    cin >> soupSize;
+    // Read Soup Values
+    char c;
+    soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
+    for (uint16_t i = 0; i < soupSize; ++i)
+        for (uint16_t j = 0; j < soupSize; ++j)
+            cin >> soup[i][j];
+}
+
+// Prints a Loading Bar -> val = [0..100]
 void diccDHashing::printLoadingBar(const float val) {
     int valAux = val / 10;
     cout << "[";
@@ -56,7 +108,7 @@ void diccDHashing::printLoadingBar(const float val) {
 }
 
 // Explores All Combinations of the Soup
-void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const int total) {
+void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const uint8_t total) {
     // Set
     used[x][y] = true;
     s.push_back(soup[x][y]);
@@ -77,7 +129,7 @@ void diccDHashing::exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vecto
     
     if (usePrefixPruning) {
         for (uint8_t i = 0; i < totalPrefixs; ++i) {
-            if (total == prefixValues[i]) {
+            if (total == prefixSizes[i]) {
                 if (!preHT[i].search(v)) {
                     used[x][y] = false;
                     s.pop_back();
@@ -120,8 +172,8 @@ void diccDHashing::assignWords() {
 
         if (usePrefixPruning) {
             for (int8_t j = 0; j < totalPrefixs; ++j) {
-                if (words[i].size() > prefixValues[j]) {
-                    if(!preHT[j].insert(stringToInt(words[i].substr(0,prefixValues[j])))) {
+                if (words[i].size() > prefixSizes[j]) {
+                    if(!preHT[j].insert(stringToInt(words[i].substr(0, prefixSizes[j])))) {
                         tSPrefix[j] <<= 1;
                         assignWords();
                     }
@@ -131,56 +183,14 @@ void diccDHashing::assignWords() {
     }
 }
 
+// Reads Input (Words & Soup)
 void diccDHashing::readInput() {
     readWords();
     readSubset();
     readSoup();
 }
 
-void diccDHashing::readWords () {
-    cin >> totalWords;
-    words = vector<string>(totalWords, "-1");
-    for (int32_t i = 0; i < totalWords; ++i) {
-        cin >> words[i];
-        for (int8_t j = 0; j <= words[i].size(); j++)
-            ++totalWordsLenght[j];
-        maxWordSize = max(maxWordSize, int(words[i].size()));
-        minWordSize = min(minWordSize, int(words[i].size()));
-    }
-
-    tableSize = INT64_C(1) << (int(log(totalWords) / log(2)) + 2);
-
-    totalPrefixs = maxWordSize - 2;
-    for (int8_t i = 0; i < totalPrefixs; ++i) {
-        const uint8_t val = i + 2;
-        prefixValues[i] = val;
-        const uint8_t v = max(int(log(totalWordsLenght[val]) / log(2)), 0) + 4;
-        tSPrefix[i] = INT64_C(1) << v;
-    }
-    assignWords();
-}
-
-void diccDHashing::readSubset() {
-    int subsetWords;
-    cin >> subsetWords;
-    for (int32_t i = 0; i < subsetWords; ++i) {
-        string w;
-        cin >> w;
-        subset.insert(w);
-    }
-}
-
-void diccDHashing::readSoup () {
-    // Read Soup Size
-    cin >> soupSize;
-    // Read Soup Values
-    char c;
-    soup = vector<vector<char>>(soupSize, vector<char>(soupSize));
-    for (uint16_t i = 0; i < soupSize; ++i)
-        for (uint16_t j = 0; j < soupSize; ++j)
-            cin >> soup[i][j];
-}
-
+// Checks if the subset has been found
 void diccDHashing::checkSubset() {
     if (includes(wordsTrobades.begin(), wordsTrobades.end(), subset.begin(), subset.end()))
         cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat la DHashing" << endl;

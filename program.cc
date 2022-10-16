@@ -62,7 +62,6 @@ set<string> readSubset() {
 }
 
 int main(int argc, char* argv[]) {
-
     if (argc != 2) {
         info();
         return -1;
@@ -76,30 +75,28 @@ int main(int argc, char* argv[]) {
         dicc.readInput();
         dicc.exploreSoup();
     }
-
     else if (select == 2) {
         vector<string> dictionary = readWordsTrie();
         set<string> subset = readSubset();
         vector<vector<char>> soup = readSoupTrie();
         trie::main(dictionary,soup,subset);
     }
-
     else if (select == 3) {
-        //cerr << "Has seleccionat filtre de bloom" << endl;
         diccBloomFilter dicc(0.01); // Probabilitat de fals positiu desitjada
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
     }
     else if (select == 4) {
-        //cerr << "Has seleccionat double hashing" << endl;
         diccDHashing dicc;
         // Read the input
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();
+        // Checks if Subset has been Found
         dicc.checkSubset();
     }
+
     auto fi = chrono::steady_clock::now();
     cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::milliseconds>(fi-inici).count() << " miliseconds." << endl;
 }

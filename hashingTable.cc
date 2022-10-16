@@ -30,16 +30,16 @@ void hashingTable::doubleHash(const int size) {
     tableSize = size;
     prime = size - 1;
     while (!isPrime(prime)) --prime;
-    hashTable = vector<int>(prime, -1);
+    hashTable = vector<int>(tableSize, -1);
 }
 
 // Returns value of h1(s)
-unsigned int hashingTable::hash1(const int  s) {
+unsigned int hashingTable::hash1(const int s) {
     return s%tableSize;
 }
 
 // Returns value of h2(s)
-unsigned int hashingTable::hash2(const int  s) {
+unsigned int hashingTable::hash2(const int s) {
     return prime - (s%prime);
 }
 
@@ -60,12 +60,7 @@ bool hashingTable::insert(const unsigned int value) {
         firstItr = false;
     }
     hashTable[hashed] = value;
-    ++keysPresent;
     return true;
-}
-
-void hashingTable::printHash() {
-    for (int i = 0; i < tableSize; ++i) cout << hashTable[i] << endl;
 }
 
 // Searches Value in the Table
@@ -87,28 +82,4 @@ bool hashingTable::search(const unsigned int value) {
 
         firstItr = false;
     }
-    return false;
-}
-
-// Erases Value of the Table
-void hashingTable::erase(const unsigned int value) {
-    if(!search(value))
-        return;    
-        
-    int  hashed = hash1(value);
-    int  offset = hash2(value);
-
-    while(hashTable[hashed] != -1) {
-        if(hashTable[hashed] == value){
-            hashTable[hashed] = -2;
-            keysPresent--;
-            return;
-        }
-        else hashed = (hashed + offset) % tableSize;
-    }
-}
-
-// Returns true if the Table is Full
-bool hashingTable::isFull() {
-    return keysPresent == tableSize;
 }

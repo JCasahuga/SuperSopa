@@ -10,32 +10,28 @@ using namespace std;
 
 class diccDHashing
 {
-    public:
-        //Constructores
-        diccDHashing();
+    private:
+        // Hash the string as Int so Double Hashing if possible
+        unsigned int stringToInt(const string& s);
 
-        // Sends a BFS dor each letter on the soup
-        void exploreSoup();
+        // Explores All Combinations of the Soup
+        void exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const uint8_t total);
 
-        // Assigns Words to the Map, if they don't fit, multiply the size by 2
-        void assignWords();
-
-        void readInput();
-
+        // Reads Words
         void readWords ();
 
+        // Reads Subset
         void readSubset();
 
+        // Reads Soup
         void readSoup ();
 
-        void checkSubset();
-
+        // Prints a Loading Bar -> val = [0..100]
         void printLoadingBar(float val);
 
         // Hash Table & Parameters
         hashingTable hT;
-        int tableSize = INT64_C(1) << 2;
-        vector<int> totalWordsLenght = vector<int>(30,0);
+        int tableSize;
         
         // Soup
         int soupSize;
@@ -47,28 +43,37 @@ class diccDHashing
 
         // Words
         int maxWordSize = 0;
-        int minWordSize = 200;
-        int totalWordsPrefixs = 0;
+        int minWordSize = 64;
         int16_t totalWords;
+        vector<int> totalWordsLenght;
         vector<string> words;
         set<string> wordsTrobades = set<string>();
         set<string> subset = set<string>();
 
+        // Control Prefixs
         int8_t totalPrefixs;
-        vector<int> tSPrefix = vector<int>(30,0);
-        vector<int8_t> prefixValues = vector<int8_t>(30, 0);
-        vector<hashingTable> preHT = vector<hashingTable>(30);
+        vector<int> tSPrefix;
+        vector<int8_t> prefixSizes;
+        vector<hashingTable> preHT;
 
         // Settings
         bool usePrefixPruning = true;
         bool printProgress = false;
 
-    private:
-        // Hash the string as Int so Double Hashing is possible
-        unsigned int stringToInt(const string& s);
+    public:
+        //Constructors
+        diccDHashing();
 
         // Explores All Combinations of the Soup
-        void exploreSoupDeep(string& s, int16_t x, int16_t y, vector<vector<bool>>& used, const int total);
-};
+        void exploreSoup();
 
+        // Assigns Words to the Map, if they don't fit, multiply the size by 2
+        void assignWords();
+
+        // Reads Input (Words & Soup)
+        void readInput();
+
+        // Checks if the subset has been found
+        void checkSubset();
+};
 #endif
