@@ -20,7 +20,7 @@ def get_average(number, path, file):
 def main():
     os.system("make -j")
     path = os.getcwd() + "/JocsDeProva/"
-    numberOfReps = 4
+    numberOfReps = 2
     print(path)
     files = [f for f in listdir(path) if isfile(join(path, f))]
     for i in range (len(files)):

@@ -77,7 +77,7 @@ private:
         set<string> foundWords;
         set<string> subsetDictionary;
 
-        bool withPrefix = true;
+        bool withPrefix = false;
 };
 
 #endif
