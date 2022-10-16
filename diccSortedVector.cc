@@ -277,6 +277,14 @@ void diccSortedVector::readWords () {
 
 
 void diccSortedVector::readSoup () {
+    cin >> subsetSize ; 
+
+    for(int i =0 ;i < subsetSize; i++){
+        string word; 
+        cin >> word ; 
+        subset.push_back(word);
+    }
+    
     // Read Soup Size
     cin >> soupSize;
 
@@ -287,14 +295,5 @@ void diccSortedVector::readSoup () {
         for (int j = 0; j < soupSize; ++j)
             cin >> soup[i][j];
 
-    string x; 
-    cin >> x ;
-    cin >> subsetSize ; 
-
-    for(int i =0 ;i < subsetSize; i++){
-        string word; 
-        cin >> word ; 
-        subset.push_back(word);
-    }
 }
 
