@@ -205,13 +205,15 @@ void diccBloomFilter::exploreSoup() {
     // cerr << "Result " << searchPrefix(stringToInt("cfi")) << endl;
     // cerr << "Result " << searchPrefix(stringToInt("fi")) << endl;
     // cerr << "Result " << searchPrefix(stringToInt("f")) << endl;
+    int n_paraules = 0;
     for (int i = 0; i < soupSize; ++i) {
-        //cerr << "In " << i << " from " << soupSize << endl;
+        cerr << "In " << i << " from " << soupSize << endl;
         for (int j = 0; j < soupSize; ++j) {
-           // cerr << "In " << j << " from " << soupSize << endl;
-            exploreSoupDeep(s, i, j, used, 1);
+            cerr << "In " << j << " from " << soupSize << endl;
+            exploreSoupDeep(s, i, j, used, 1, n_paraules);
         }
     }
+    cerr << "paraules = " << n_paraules << endl;
 
     
     cout << "We found " << foundWords.size() << " words." << endl;
@@ -222,7 +224,7 @@ void diccBloomFilter::exploreSoup() {
 }
 
 // Explores All Combinations of the Soup
-void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<bool>>& used, const int total) {
+void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<bool>>& used, const int total, int& n_paraules) {
     // Set
     used[x][y] = true;
     s.push_back(soup[x][y]);
@@ -249,7 +251,8 @@ void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<boo
 
     // Is in the Hash Table?
     if (search(v)) {
-        foundWords.insert(s);
+        ++n_paraules;
+        //foundWords.insert(s);
         //cerr << "Found " << s << " Value " << v << endl;
     }
 
@@ -267,7 +270,7 @@ void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<boo
             if (not used[x][y]) {
                 //cerr << "Exploring " << x << " - " << y << endl;
                 used[x][y] = true;
-                exploreSoupDeep(s, x, y, used, total+1);
+                exploreSoupDeep(s, x, y, used, total+1, n_paraules);
                 used[x][y] = false;
             }
         }

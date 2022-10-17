@@ -29,7 +29,7 @@ private:
         unsigned int stringToInt(string s);
 
        // Explores All Combinations of the Soup
-        void exploreSoupDeep(string& s, int x, int y, vector<vector<bool>>& used, const int total);
+        void exploreSoupDeep(string& s, int x, int y, vector<vector<bool>>& used, const int total, int& n_paraules);
 
         // Assigns Words to the Map, if they don't fit, multiply the size by 2
         void buildFilter();
@@ -77,7 +77,7 @@ private:
         set<string> foundWords;
         set<string> subsetDictionary;
 
-        bool withPrefix = true;
+        bool withPrefix = false;
 };
 
 #endif
