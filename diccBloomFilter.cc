@@ -206,7 +206,7 @@ void diccBloomFilter::exploreSoup() {
     // cerr << "Result " << searchPrefix(stringToInt("fi")) << endl;
     // cerr << "Result " << searchPrefix(stringToInt("f")) << endl;
     int n_paraules = 0;
-    for (int i = 0; i < soupSize; ++i) {
+    for (int i = 0; i < 1; ++i) {
         cerr << "In " << i << " from " << soupSize << endl;
         for (int j = 0; j < soupSize; ++j) {
             cerr << "In " << j << " from " << soupSize << endl;
