@@ -217,9 +217,9 @@ void diccBloomFilter::exploreSoup() {
 
     
     cout << "We found " << foundWords.size() << " words." << endl;
-    // for (string s : foundWords) {
-    //     cout << s << endl;
-    // }
+    for (string s : foundWords) {
+        cout << s << endl;
+    }
     esSubconjunt();
 }
 
@@ -252,7 +252,7 @@ void diccBloomFilter::exploreSoupDeep(string& s, int x, int y, vector<vector<boo
     // Is in the Hash Table?
     if (search(v)) {
         ++n_paraules;
-        //foundWords.insert(s);
+        foundWords.insert(s);
         //cerr << "Found " << s << " Value " << v << endl;
     }
 
