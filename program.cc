@@ -103,5 +103,5 @@ int main(int argc, char* argv[]) {
         dicc.checkSubset();
     }
     auto fi = chrono::steady_clock::now();
-    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::milliseconds>(fi-inici).count() << " miliseconds." << endl;
+    cout << "Temps de creació i cerca paraules : " <<  chrono::duration_cast<chrono::miliseconds>(fi-inici).count() << " miliseconds." << endl;
 }
