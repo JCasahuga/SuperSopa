@@ -38,19 +38,20 @@ make -j
 ```
 ./generator.x N s < Diccionaris/nom_fitxer.txt > JocsDeProva/nom_fitxer.inp
 ```
-  On _N_ és el nombre de caselles que el taulell tindrà per fila i columna (NxN) i _s_ serà el subconjunt de paraules que s'intentarà col·locar.
+  On _N_ és el nombre de caselles que el taulell tindrà per fila i columna (NxN) i _s_ serà el subconjunt de paraules que s'intentarà col·locar.    
+  Noteu que els noms dels jocs de prova s'han establit amb el següent format: diccionari_N_s.inp
 
 ## Scrypts   
 Per facilitar la feina en quan a anàlisis hi ha dos scrypts disponibles escrits en python, el primer [scryptGenerate.py](/scryptGenerate.py) s'utilitza per generar multiples jocs de proves alhora. Les variables per defecte són:   
-
+![generator default values](/images/variables_scryptGenerator.png)   
 Però es poden canviar per tal de generar uns jocs de prova personalizats. Per executar l'scryt caldrà fer:
 ```
 python3 scryptGenerator.py
 ```
 
-El segon scrypt és [scryptTesting.py](/scryptTesting.py) i serveix per calcular la mitjana del temps d'execució emprant els diferent diccionaris per als jocs de prova que es troba a la carpeta [JocsDeProva](/JocsDeProva). Les variables per defecte són:
-
-Però es poden canviar per tal de només testejar un diccionari en concret (comentant) o bé augmentant el nombre de repeticions. Per executar l'scryt caldrà fer:
+El segon scrypt és [scryptTesting.py](/scryptTesting.py) i serveix per calcular la mitjana del temps d'execució emprant els diferent diccionaris per als jocs de prova que es troba a la carpeta [JocsDeProva](/JocsDeProva). Les variables per defecte són:   
+![testing default values](/images/variables_scryptTesting.png)   
+Però es poden canviar per tal de només testejar un diccionari en concret (comentant) o bé augmentant el nombre de repeticions (molt recomenable per inputs petits i mitjans). Per executar l'scryt caldrà fer:
 ```
 python3 scryptTesting.py
 ```
