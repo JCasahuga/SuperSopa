@@ -40,9 +40,9 @@ make -j
 ```
   On _N_ és el nombre de caselles que el taulell tindrà per fila i columna (NxN) i _s_ serà el subconjunt de paraules que s'intentarà col·locar.
 
-## Scrypts
-Per facilitar la feina en quan a anàlisis hi ha dos scrypts disponibles escrits en python, el primer [scryptGenerate.py](/scryptGenerate.py) s'utilitza per generar multiples jocs de proves alhora. Les variables per defecte són:
-------
+## Scrypts   
+Per facilitar la feina en quan a anàlisis hi ha dos scrypts disponibles escrits en python, el primer [scryptGenerate.py](/scryptGenerate.py) s'utilitza per generar multiples jocs de proves alhora. Les variables per defecte són:   
+
 Però es poden canviar per tal de generar uns jocs de prova personalizats. Per executar l'scryt caldrà fer:
 ```
 python3 scryptGenerator.py
