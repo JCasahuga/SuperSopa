@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/Projecte_SuperSopa.dir/generator.cc.o -o Projecte_SuperSopa 

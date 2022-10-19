@@ -1,3 +1,0 @@
-/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles/Projecte_SuperSopa.dir
-/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles/edit_cache.dir
-/home/miquel/Documents/Q5/A/Supersopa/SuperSopa/CMakeFiles/rebuild_cache.dir

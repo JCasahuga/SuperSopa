@@ -1,6 +1,0 @@
-# ninja log v5
-2986	3097	1664616428610820649	Projecte_SuperSopa	7fe72b48488e3317
-6	2067	1664546254826360538	CMakeFiles/Projecte_SuperSopa.dir/main.cpp.o	ab3a64f97336f5a7
-4	1857	1664986530423531698	CMakeFiles/Projecte_SuperSopa.dir/supersopa.cc.o	20a338ba7c1eee17
-3	1120	1664986354948277764	CMakeFiles/Projecte_SuperSopa.dir/diccTrie.cc.o	7caeb2be987d8755
-4	1221	1664986314785770353	CMakeFiles/Projecte_SuperSopa.dir/Trie.cpp.o	64718e1d321e59a2
