@@ -90,32 +90,6 @@ bool diccSortedVector::allowedMove(Pos final){
 }
 
 
-// Implementation of SPECIAL binary search
-// O(log n) -- Recursive Implementation
-
-// -1 if NO, -2 if maybe, int >=0 [index in vector] if yes
-
-int diccSortedVector::binarySearch(string &word, int low, int high, bool prefix){
-    bool debug=false; 
-
-    if (low > high){
-        if(prefix) return -2;
-        return -1; 
-    }else{
-        bool pre;
-        int half = (low + high)/2; 
-        if(!prefix) pre = isPrefix(word, words[half]);
-        else pre = prefix;
-        if (word.compare(words[half]) == 0) {
-            return half;
-        }else if (word.compare(words[half]) > 0){
-            return binarySearch(word, half + 1, high, pre);  
-        }else {
-            return binarySearch(word, low, half - 1, pre) ;
-        }
-    }
-}
-
 // Explore soup
 // Worst case there are no words in the soup, so we have to check every position
 // Every position n² times the Backtracking algorithm.
