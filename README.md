@@ -18,7 +18,7 @@ cd SuperSopa
 ```
 make -j
 ```
-- A continuació ja podem utilitzar el fitxers .inp que es troben a [JocsDeProva](https://github.com/JCasahuga/SuperSopa/tree/main/JocsDeProva) utilitzant el següent format:
+- A continuació ja podem utilitzar el fitxers .inp que es troben a [JocsDeProva](/JocsDeProva) utilitzant el següent format:
 ```
 ./program.x n < JocsDeProva/nom_fitxer.inp
 ```
@@ -40,6 +40,17 @@ make -j
 ```
   On _N_ és el nombre de caselles que el taulell tindrà per fila i columna (NxN) i _s_ serà el subconjunt de paraules que s'intentarà col·locar.
 
-
-___
 ## Scrypts
+Per facilitar la feina en quan a anàlisis hi ha dos scrypts disponibles escrits en python, el primer [scryptGenerate.py](/scryptGenerate.py) s'utilitza per generar multiples jocs de proves alhora. Les variables per defecte són:
+------
+Però es poden canviar per tal de generar uns jocs de prova personalizats. Per executar l'scryt caldrà fer:
+```
+python3 scryptGenerator.py
+```
+
+El segon scrypt és [scryptTesting.py](/scryptTesting.py) i serveix per calcular la mitjana del temps d'execució emprant els diferent diccionaris per als jocs de prova que es troba a la carpeta [JocsDeProva](/JocsDeProva). Les variables per defecte són:
+
+Però es poden canviar per tal de només testejar un diccionari en concret (comentant) o bé augmentant el nombre de repeticions. Per executar l'scryt caldrà fer:
+```
+python3 scryptTesting.py
+```
