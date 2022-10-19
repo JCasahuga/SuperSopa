@@ -185,8 +185,11 @@ void diccDHashing::assignWords() {
 
 // Reads Input (Words & Soup)
 void diccDHashing::readInput() {
+    // Read words
     readWords();
+    // Read subset
     readSubset();
+    //Read soup
     readSoup();
 }
 

@@ -109,9 +109,45 @@ namespace trie {
     int main(vector<string>& D, vector<vector<char>>& soup, set<string>& subconjunt) {
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
-        cout << paraulesSenseRepetir.size() << endl;
-        esSubconjunt(subconjunt,paraulesSenseRepetir);
+        //cout << paraulesSenseRepetir.size() << endl;
+        cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat la Trie" << endl;
 
         return 0;
+    }
+
+    vector<vector<char>> readSoupTrie () {
+        // Read Soup Size
+        int soupSize;
+        cin >> soupSize;
+        vector<vector<char>> soup(soupSize, vector<char>(soupSize));
+
+        // Read Soup Values
+        char c;
+        for (int i = 0; i < soupSize; ++i)
+            for (int j = 0; j < soupSize; ++j)
+                cin >> soup[i][j];
+        return soup;
+    }
+
+    vector<string> readWordsTrie () {
+        int totalWords;
+        cin >> totalWords;
+        vector<string> words;
+        words = vector<string>(totalWords, "-1");
+        for (int i = 0; i < totalWords; ++i) 
+            cin >> words[i];
+        return words;
+    }
+
+    set<string> readSubset() {
+        int subsetWords;
+        cin >> subsetWords;
+        vector<string> subsetDictionary;
+        subsetDictionary = vector<string>(subsetWords, "-1");
+        for (int i = 0; i < subsetWords; ++i) {
+            cin >> subsetDictionary[i];
+        }
+        set<string> P(subsetDictionary.begin(),subsetDictionary.end());
+        return P;
     }
 }

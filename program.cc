@@ -14,6 +14,7 @@ using namespace std;
 
 //Note: Standard input format
 // nW seguit de nW paraules
+// nS seguit de nS selectedWords (s'utilitzaran per comprovar que el programa les troba com a mínim)
 // n seguit d'una sopa de nxn
 
 void info() {
@@ -24,42 +25,6 @@ void info() {
             "[4] Double Hashing" << endl;
 }
 
-
-vector<vector<char>> readSoupTrie () {
-    // Read Soup Size
-    int soupSize;
-    cin >> soupSize;
-    vector<vector<char>> soup(soupSize, vector<char>(soupSize));
-
-    // Read Soup Values
-    char c;
-    for (int i = 0; i < soupSize; ++i)
-        for (int j = 0; j < soupSize; ++j)
-            cin >> soup[i][j];
-    return soup;
-}
-
-vector<string> readWordsTrie () {
-    int totalWords;
-    cin >> totalWords;
-    vector<string> words;
-    words = vector<string>(totalWords, "-1");
-    for (int i = 0; i < totalWords; ++i) 
-        cin >> words[i];
-    return words;
-}
-
-set<string> readSubset() {
-    int subsetWords;
-    cin >> subsetWords;
-    vector<string> subsetDictionary;
-    subsetDictionary = vector<string>(subsetWords, "-1");
-    for (int i = 0; i < subsetWords; ++i) {
-        cin >> subsetDictionary[i];
-    }
-    set<string> P(subsetDictionary.begin(),subsetDictionary.end());
-    return P;
-}
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -72,17 +37,22 @@ int main(int argc, char* argv[]) {
     auto inici = chrono::steady_clock::now();
     if (select == 1) {
         diccSortedVector dicc;
+        //Read the input
         dicc.readInput();
+        // Explore Soup
         dicc.exploreSoup();
     }
     else if (select == 2) {
-        vector<string> dictionary = readWordsTrie();
-        set<string> subset = readSubset();
-        vector<vector<char>> soup = readSoupTrie();
+        //Read the input
+        vector<string> dictionary = trie::readWordsTrie();
+        set<string> subset = trie::readSubset();
+        vector<vector<char>> soup = trie::readSoupTrie();
+        // Explore Soup
         trie::main(dictionary,soup,subset);
     }
     else if (select == 3) {
         diccBloomFilter dicc(0.01); // Probabilitat de fals positiu desitjada
+        //Read the input
         dicc.readInput();
         // Explore Soup
         dicc.exploreSoup();

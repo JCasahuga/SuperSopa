@@ -28,9 +28,9 @@ def main():
         print("Testing input: " + f)
         
         average = 0
-        #for i in range (0, numberOfReps):
-        #    average += (get_average("1", path, f)/numberOfReps)
-        #print("Sorted vector time:  " + str(average) + " ms")
+        for i in range (0, numberOfReps):
+           average += (get_average("1", path, f)/numberOfReps)
+        print("Sorted vector time:  " + str(average) + " ms")
 
         average = 0
         for i in range (0, numberOfReps):

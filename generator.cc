@@ -11,6 +11,10 @@ using namespace std;
 typedef vector<char> Files;
 typedef vector<Files> Sopa;
 
+// Note: Evitar crear taulell de mides molt grans amb moltes paraules, doncs
+//       cada vegada que se'n col·loca una es crea un vector de poscions aleatories 
+//       diferents que fa reduir la velocitat del programa.
+
 bool DEBUG = false;
 vector<string> dictionary;
 set<string> selectedWords;
@@ -145,18 +149,29 @@ void fillSoupEmptySpaces() {
     }
 }
 
+void info() {
+    cerr << "Usage: ./generator N S < diccionari.txt" << endl <<
+            "on N serà el nombre que indiqui la mida del taulell (NxN)" << endl <<
+            "   S serà el nombre de paraules a seleccionar com a subconjunt del diccionari" << endl;
+}
+
 //////////////////////////// MAIN //////////////////////////////
 
 int main(int argc, char* argv[])
 {
+    if (argc != 3) {
+        info();
+        return -1;
+    }
+
     srand(1234);
 
     string word;
     while (cin >> word) dictionary.push_back(word);
     
-    selectWordSet(atoi(argv[2]));              // Result is saved in selectedWords var 
-    N = atoi(argv[1]);              // Deafult value = 20
-    DEBUG = false;                  // DEBUG mode
+    selectWordSet(atoi(argv[2]));               // Result is saved in selectedWords var 
+    N = atoi(argv[1]);                          // Deafult value = 20
+    DEBUG = false;                              // DEBUG mode
 
     //printSelectedWords();
 

@@ -23,7 +23,6 @@ bool diccSortedVector::isInPrefix(string word) {
     return binary_search(prefixs.begin(), prefixs.end(), word);
 }
 
-
 //Constructore
 diccSortedVector::diccSortedVector(){}
 
@@ -34,7 +33,6 @@ diccSortedVector::diccSortedVector(vector<string> words){
 }
 
 // Getters setters & such
-
 
 char diccSortedVector::getSoup(Pos pos){
     return soup[pos.x][pos.y];
@@ -100,7 +98,6 @@ bool diccSortedVector::allowedMove(Pos final){
 int diccSortedVector::binarySearch(string &word, int low, int high, bool prefix){
     bool debug=false; 
 
-    //if(word == "tool") debug = true; 
     if (low > high){
         if(prefix) return -2;
         return -1; 
@@ -119,16 +116,14 @@ int diccSortedVector::binarySearch(string &word, int low, int high, bool prefix)
     }
 }
 
-//Explore soup
+// Explore soup
 // Worst case there are no words in the soup, so we have to check every position
-//Every position n² times the Backtracking algorithm.
+// Every position n² times the Backtracking algorithm.
 void diccSortedVector::exploreSoup () {
 
     set<string> paraulesTrobades; 
     //For each position, if there's still words left to look for
     // And it has not been used by another word, start a DFS
-    //cerr << "HERE" << endl;
-    //auto inici = chrono::steady_clock::now();
     set<string> wordsFound;
     int total = 0;
     vector<vector<bool>> used(soupSize, vector<bool>(soupSize, false));
@@ -147,19 +142,15 @@ void diccSortedVector::exploreSoup () {
             }
         }    
     }
-    //auto fi = chrono::steady_clock::now();
     
     //Printing of the soup words found
-    //cout << "Number of words found:  " << paraulesTrobades.size() << endl;
-
+    cout << "Number of words found:  " << paraulesTrobades.size() << endl;
     // cout << "Out of the subset, words not found: "<<endl; 
     // for(int i = 0 ; i < subset.size(); i++){
     //     if(paraulesTrobades.find(subset[i]) == paraulesTrobades.end()){
     //         cout << subset[i] << endl;
     //     }
     // }
-    // cout << "Temps: " <<  chrono::duration_cast<chrono::nanoseconds>(fi-inici).count() << " nanosegons." << endl;
-
 }
 
 // Function to perform backtracking
@@ -183,7 +174,6 @@ void diccSortedVector::search(Pos pos, string& builtWord, vector<vector<bool>>& 
 
     if (usePrefix and (not isInPrefix(builtWord)))
     {
-        //cerr << "not any word starting with that for " << builtWord << endl;
         used[pos.x][pos.y] = false;
         builtWord.pop_back();
         return ;
@@ -191,7 +181,6 @@ void diccSortedVector::search(Pos pos, string& builtWord, vector<vector<bool>>& 
 
     // Is in the Hash Table?
     if (exists(builtWord)) {
-        //cout << "found word " << builtWord << endl;
         ++total;
         foundWords.insert(builtWord);
     }
@@ -200,10 +189,9 @@ void diccSortedVector::search(Pos pos, string& builtWord, vector<vector<bool>>& 
     for (int i = 0; i < 8; ++i) {
         pos.x += directions[i].x;
         pos.y += directions[i].y;
-        //cerr << "Going to check " << x << " - " << y << endl;
+
         if (min(pos.x, pos.y) >= 0 && max(pos.x, pos.y) < soupSize) {
             if (not used[pos.x][pos.y]) {
-                //cerr << "Exploring " << x << " - " << y << endl;
                 used[pos.x][pos.y] = true;
                 Pos p = {pos.x, pos.y};
                 search(p, builtWord, used, foundWords, total);
@@ -266,17 +254,16 @@ void diccSortedVector::readWords () {
         for (int j = 0; j < words[i].size(); ++j) {
             s.push_back(words[i][j]);
             prefixs.push_back(s);
-            //cerr << "word value for " << s << " is " << wordValue << endl;
         }
     }
     sort(words.begin(), words.end());
     sort(prefixs.begin(), prefixs.end());
-    //cout << "Words Read and sorted" << endl;
 }
 
 
 
 void diccSortedVector::readSoup () {
+    // Read subset
     cin >> subsetSize; 
     for(int i =0 ;i < subsetSize; i++){
         string word; 
