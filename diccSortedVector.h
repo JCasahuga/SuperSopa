@@ -42,7 +42,6 @@ class diccSortedVector
         
         void readWords(); 
         void readSoup(); 
-        int binarySearch(string &word, int low, int high, bool prefix);
 
     public:
         diccSortedVector();
