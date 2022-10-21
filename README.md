@@ -5,7 +5,7 @@ Aquest projecte té com a objectiu realizar una validació experimental de l’e
 Som [@agnesfelip](https://github.com/agnesfelip), [@JCasahuga](https://github.com/jcasahuga), [@Martaw-code](https://github.com/Martaw-code) i [@miquelt9](https://github.com/miquelt9), estudiants de la [FIB](https://www.fib.upc.edu) cursant [A](https://www.fib.upc.edu/ca/estudis/graus/grau-en-enginyeria-informatica/pla-destudis/assignatures/A).
 
 ## Què hem fet?
-Hem comprovat l'eficiència i aplicabilitat del [vector ordenat](https://en.wikipedia.org/wiki/Sorted_array), la [trie](https://en.wikipedia.org/wiki/Trie), el [filtre de Bloom](https://en.wikipedia.org/wiki/Bloom_filter) i el [double hashing](https://en.wikipedia.org/wiki/Double_hashing) cercant paraules a Supersopes de diferents caracteristiques per després comparar els resultats i extreure'n conclusions. Aquestes es poden llegit a l'[informe]().
+Hem comprovat l'eficiència i aplicabilitat del [vector ordenat](https://en.wikipedia.org/wiki/Sorted_array), la [trie](https://en.wikipedia.org/wiki/Trie), el [filtre de Bloom](https://en.wikipedia.org/wiki/Bloom_filter) i el [double hashing](https://en.wikipedia.org/wiki/Double_hashing) cercant paraules a Supersopes de diferents caracteristiques per després comparar els resultats i extreure'n conclusions. Aquestes es poden llegit a l'[informe](/Informe%20Projecte%20d%E2%80%99Algor%C3%ADsmia.pdf).
 
 ## Com executar el programa
 Per executar el programa cal:
