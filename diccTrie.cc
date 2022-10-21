@@ -109,7 +109,7 @@ namespace trie {
     int main(vector<string>& D, vector<vector<char>>& soup, set<string>& subconjunt) {
         set<string> paraulesSenseRepetir = cercaParaules(D, soup);
 
-        //cout << paraulesSenseRepetir.size() << endl;
+        cout << paraulesSenseRepetir.size() << endl;
         cout << "Les paraules del subconjunt es troben incloses a les paraules que ha trobat la Trie" << endl;
 
         return 0;
